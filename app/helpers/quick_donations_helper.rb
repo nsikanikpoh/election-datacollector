@@ -1,0 +1,2 @@
+module QuickDonationsHelper
+end

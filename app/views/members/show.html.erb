@@ -1,0 +1,599 @@
+<style type="text/css">
+
+body {
+  color: #2c3e50;
+  background: #ecf0f1;
+}
+h1 {
+  text-align: left;
+}
+.half {
+  float: center;
+  width: 100%;
+  padding: 0 1em;
+}
+/* Acordeon styles */
+.tab {
+  position: relative;
+  margin-bottom: 1px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+}
+.tab input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.tab label {
+  position: relative;
+  display: block;
+  padding: 0 0 0 1em;
+  background: #003040;
+   background: linear-gradient(#003040, #002535);
+  font-weight: bold;
+  line-height: 3;
+  cursor: pointer;
+  margin: 50px auto 0 auto;
+      color: white;
+      box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px rgba(255, 255, 255, 0.5);
+}
+.blue label {
+  background: #2980b9;
+}
+.tab-content {
+  max-height: 0;
+  overflow: hidden;
+
+  background: #004050;
+  -webkit-transition: max-height .35s;
+  -o-transition: max-height .35s;
+  transition: max-height .35s;
+}
+.blue .tab-content {
+  background: #3498db;
+}
+.tab-content p {
+  margin: 1em;
+}
+/* :checked */
+.tab input:checked ~ .tab-content {
+  max-height: 100vh;
+}
+/* Icon */
+.tab label::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  line-height: 3;
+  text-align: center;
+  -webkit-transition: all .35s;
+  -o-transition: all .35s;
+  transition: all .35s;
+}
+.tab input[type=checkbox] + label::after {
+  content: "+";
+}
+.tab input[type=radio] + label::after {
+  content: "\25BC";
+}
+.tab input[type=checkbox]:checked + label::after {
+  transform: rotate(315deg);
+}
+.tab input[type=radio]:checked + label::after {
+  transform: rotateX(180deg);
+}
+
+#accordian {
+    }
+
+#accordian h3 {
+      background: #003040;
+      background: linear-gradient(#003040, #002535);
+}
+
+#accordian ul li a {
+      padding: 0 10px;
+      font-size: 16px;
+      line-height: 34px;
+      display: block;
+      color: white;
+      text-decoration: none;
+}
+
+#accordian h3:hover {
+      text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+i {
+      margin-right: 10px;
+}
+
+#accordian li {
+      list-style-type: none;
+}
+
+#accordian ul ul li a,
+#accordian h4 {
+      color: white;
+      text-decoration: none;
+      font-size: 11px;
+      line-height: 27px;
+      display: block;
+      padding: 0 15px;
+      transition: all 0.15s;
+      position: relative;
+}
+
+#accordian ul li a:hover {
+      background: #003545;
+      border-left: 10px solid lightgreen;
+}
+
+#accordian ul ul {
+      display: none;
+}
+
+#accordian li.active>ul {
+      display: block;
+}
+
+#accordian ul ul ul {
+      margin-left: 15px;
+      border-left: 1px dotted rgba(0, 0, 0, 0.5);
+}
+
+#accordian a:not(:only-child):after {
+      content: "\f104";
+      font-family: fontawesome;
+      position: absolute;
+      right: 10px;
+      top: 0;
+      font-size: 14px;
+}
+
+#accordian .active>a:not(:only-child):after {
+      content: "\f107";
+}
+
+</style>
+<% provide( :title, @user.name) %>
+
+<h1 class="title1">Profile Info</h1>
+<div class="col-md-12 panel-grids">
+</div>
+ 
+            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title">  <%= @user.name.capitalize if @user.name %></h3> </div> <div class="panel-body">
+
+<div class="col-md-4 widget widget1 panel-grids">
+          
+
+ <div class="row">
+  
+      <div class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+          <div class="profile-userpic">
+       <%if @user.image?%>
+        <%= image_tag(@user.image_url) %>
+
+        <%else%>
+
+        <img src="../assets/fallback/default.png"/>
+        <%end%>
+
+        </div>
+           <%= @user.name.capitalize if @user.name %>
+          </div>
+          <div class="profile-usertitle-job">
+           <%= @user.type %>
+
+          </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+        <!-- SIDEBAR BUTTONS -->
+        <div class="profile-userbuttons">
+          <center><button type="button" class="btn btn-success btn-sm">OneMilMap</button></center>
+          
+        </div>
+        <!-- END SIDEBAR BUTTONS -->
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li class="active">
+             
+              <%= link_to edit_user_registration_path(current_user) do%> <i class="fa fa-user"></i>Account Settings<%end%>
+            </li>
+            
+
+          </ul>
+        </div>
+        <!-- END MENU -->
+     
+    </div>
+    </div>
+    </div>
+    
+  <div class="col-md-5 widget widget1">
+            <div class="r3_counter_box">
+            <div class="profile-content">
+         <table class="table">
+
+        <tbody>
+
+        <tr>
+
+
+
+<%if @user.title%>
+<td>
+  <strong>Title:</strong>
+  <%= @user.title %>
+</td></tr>
+<tr>
+<%end%>
+
+<%if @user.gender%>
+<td>
+  <strong>Gender:</strong>
+  <%= @user.gender%>
+</td></tr>
+<tr>
+<% end %>
+<%if @user.phone%>
+<td>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</td></tr>
+<tr>
+<%end%>
+<%if @user.email%>
+<td>
+  <strong>Email:</strong>
+  <%= @user.email%>
+</td></tr>
+<tr>
+<%end%>
+<%if @user.address%>
+<td>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</td></tr>
+<tr>
+<%end%>
+
+<%if @user.location%>
+<td>
+  <strong>Location:</strong>
+  <%= @user.location %>
+</td></tr>
+<tr>
+<%end%>
+<%if @user.state%>
+<td>
+  <strong>State:</strong>
+  <%= @user.state%>
+</td></tr>
+<tr>
+<%end%>
+
+<%if @user.referrer_code%>
+<td>
+  <strong>Referred By:</strong>
+  <%= @referrer.name%> <%= link_to "Profile", user_path(@referrer), style:"color:#FF0000;" %>
+</td></tr>
+<tr>
+<%end%>
+
+<%if current_user.provider == ''%>
+<td>
+          <span>
+             signed up through on-site auth.
+          </span>
+</td></tr>
+<tr>
+<%else%>
+<td>
+ signed up through - <%= current_user.provider%> auth.
+</td></tr>
+<tr>
+          <%end%>
+          <tr>
+          <td>
+          <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-success" %> 
+          </td>
+          </tr>
+           <tr>
+          <td>
+          <%= link_to 'Dashboard', root_url, class:"btn btn-info" %>
+          </td>
+          </tr>
+           <tr>
+          <td>
+          <%= link_to "Back", :back, class:"btn btn-warning"%> 
+          </td>
+          </tr>
+          </tbody>
+          </table>
+
+
+          <br/>
+          <br/>
+<br/>       
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+   
+  
+          <div class="col-md-6">
+
+            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title">  <%= @user.name.capitalize if @user.name %>'s Downlines</h3> </div>
+ 
+  <div class="half">
+    <p>click to <strong>view</strong></p>
+    <div class="tab">
+      <input id="tab-one" type="checkbox" name="tabs">
+      <label for="tab-one"><i class="fa fa-lg fa-tasks"></i>First Generation <a style="color:orange;"><%= pluralize(@firstgeners.count, "Referral") %></a> <img src="../assets/img/1st_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/1st_generation_hover.png'" onmouseout="this.src='../assets/img/1st_generation.png'"></label>
+      <div class="tab-content">
+        <div id="accordian"> 
+        <% if @firstgeners.any? %>
+         <% @firstgeners.each do |user| %>
+                  <ul>
+                        <li>
+                           
+                            <a>
+    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
+ <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
+                  </a>
+                        </li>
+                  </ul>
+                        <%end%>
+               <%else%>
+
+                      
+<p style="color:orange;">0 Referral</p>
+
+<%end%>
+                  </ul>
+ 
+         </div>
+      </div>
+    </div>
+
+
+      <div class="tab">
+      <input id="tab-two" type="checkbox" name="tabs">
+      <label for="tab-two"><i class="fa fa-lg fa-tasks"></i>Second Generation <a style="color:orange;"><%= pluralize(@secondgeners.count, "Referral") %></a> <img src="../assets/img/2nd_generation.png" width="100%" height="100%" onmouseover="this.src='../assets/img/2nd_generation_hover.png'" onmouseout="this.src='../assets/img/2nd_generation.png'"/></label>
+      <div class="tab-content">
+        <div id="accordian"> 
+        <% if @secondgeners.any? %>
+         <% @secondgeners.each do |user| %>
+                  <ul>
+                        <li>
+                           
+                            <a>
+    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
+ <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
+                  </a>
+                        </li>
+                  </ul>
+                        <%end%>
+               <%else%>
+
+                      
+<p style="color:orange;">0 Referral</p>
+
+<%end%>
+                  </ul>
+ 
+         </div>
+      </div>
+    </div>
+
+       <div class="tab">
+      <input id="tab-three" type="checkbox" name="tabs">
+      <label for="tab-three"><i class="fa fa-lg fa-tasks"></i>Third Generation <a style="color:orange;"><%= pluralize(@thirdgeners.count, "Referral") %></a> <img src="../assets/img/3rd_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/3rd_generation_hover.png'" onmouseout="this.src='../assets/img/3rd_generation.png'"></label>
+      <div class="tab-content">
+        <div id="accordian"> 
+        <% if @thirdgeners.any? %>
+         <% @thirdgeners.each do |user| %>
+                  <ul>
+                        <li>
+                           
+                            <a>
+    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
+ <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+                        </li>
+                  </ul>
+                        <%end%>
+               <%else%>
+
+                      
+<p style="color:orange;">0 Referral</p>
+
+<%end%>
+                  </ul>
+ 
+         </div>
+      </div>
+    </div>
+
+       <div class="tab">
+      <input id="tab-four" type="checkbox" name="tabs">
+      <label for="tab-four"><i class="fa fa-lg fa-tasks"></i>Fourth Generation <a style="color:orange;"><%= pluralize(@fourthgeners.count, "Referral") %></a> <img src="../assets/img/4th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/4th_generation_hover.png'" onmouseout="this.src='../assets/img/4th_generation.png'"></label>
+      <div class="tab-content">
+        <div id="accordian"> 
+        <% if @fourthgeners.any? %>
+         <% @fourthgeners.each do |user| %>
+                  <ul>
+                        <li>
+                           
+                            <a>
+    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
+ <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+                        </li>
+                  </ul>
+                        <%end%>
+               <%else%>
+
+                      
+<p style="color:orange;">0 Referral</p>
+
+<%end%>
+                  </ul>
+ 
+         </div>
+      </div>
+    </div>
+
+       <div class="tab">
+      <input id="tab-five" type="checkbox" name="tabs">
+      <label for="tab-five"><i class="fa fa-lg fa-tasks"></i>Five Generation <a style="color:orange;"><%= pluralize(@fifthgeners.count, "Referral") %></a> <img src="../assets/img/5th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/5th_generation_hover.png'" onmouseout="this.src='../assets/img/5th_generation.png'"></label>
+      <div class="tab-content">
+        <div id="accordian"> 
+        <% if @fifthgeners.any? %>
+         <% @fifthgeners.each do |user| %>
+                  <ul>
+                        <li>
+                           
+                            <a>
+    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
+ <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+                        </li>
+                  </ul>
+                        <%end%>
+               <%else%>
+
+                      
+<p style="color:orange;">0 Referral</p>
+
+<%end%>
+                  </ul>
+ 
+         </div>
+      </div>
+    </div>
+
+       <div class="tab">
+      <input id="tab-six" type="checkbox" name="tabs">
+      <label for="tab-six"><i class="fa fa-lg fa-tasks"></i>Six Generation <a style="color:orange;"><%= pluralize(@sixthgeners.count, "Referral") %></a> <img src="../assets/img/6th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/6th_generation_hover.png'" onmouseout="this.src='../assets/img/6th_generation.png'"></label>
+      <div class="tab-content">
+        <div id="accordian"> 
+        <% if @sixthgeners.any? %>
+         <% @sixthgeners.each do |user| %>
+                  <ul>
+                        <li>
+                           
+                            <a>
+    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
+ <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+                        </li>
+                  </ul>
+                        <%end%>
+               <%else%>
+
+                      
+<p style="color:orange;">0 Referral</p>
+
+<%end%>
+                  </ul>
+ 
+         </div>
+      </div>
+    </div>
+     <div class="tab">
+      <input id="tab-seven" type="checkbox" name="tabs">
+      <label for="tab-seven"><i class="fa fa-lg fa-tasks"></i>Seven Generation <a style="color:orange;"><%= pluralize(@seventhgeners.count, "Referral") %></a> <img src="../assets/img/7th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/7th_generation_hover.png'" onmouseout="this.src='../assets/img/7th_generation.png'"></label>
+      <div class="tab-content">
+        <div id="accordian"> 
+        <% if @seventhgeners.any? %>
+         <% @seventhgeners.each do |user| %>
+                  <ul>
+                        <li>
+                           
+                            <a>
+    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
+ <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+                        </li>
+                  </ul>
+                        <%end%>
+               <%else%>
+
+                      
+<p style="color:orange;">0 Referral</p>
+
+<%end%>
+                  </ul>
+ 
+         </div>
+      </div>
+    </div>
+
+     <div class="tab">
+      <input id="tab-eight" type="checkbox" name="tabs">
+      <label for="tab-eight"><i class="fa fa-lg fa-tasks"></i>Eighth Generation <a style="color:orange;"><%= pluralize(@eightgeners.count, "Referral") %></a> <img src="../assets/img/8th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/8th_generation_hover.png'" onmouseout="this.src='../assets/img/8th_generation.png'"></label>
+      <div class="tab-content">
+        <div id="accordian"> 
+        <% if @eightgeners.any? %>
+         <% @eightgeners.each do |user| %>
+                  <ul>
+                        <li>
+                           
+                            <a>
+    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
+ <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+                        </li>
+                  </ul>
+                        <%end%>
+               <%else%>
+
+                      
+<p style="color:orange;">0 Referral</p>
+
+<%end%>
+                  </ul>
+ 
+         </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<br/>
+<br/>
+

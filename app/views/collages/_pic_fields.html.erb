@@ -1,0 +1,27 @@
+<tr class="neste-fields">
+
+<td><%= link_to_remove_association "remove task", f, class:'btn btn-danger'%>
+</td>
+<td>
+
+ 
+    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+ <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+          <div class="profile-userpic">
+   <%= f.label :picture, "Picture" %>
+ 
+ 
+    <%= f.file_field :picture, autofocus: true %>
+   <%= f.hidden_field :picture_cache %>
+  
+  
+
+  </div>
+  </div>
+
+          </div>
+   
+
+	</td>
+</tr> 

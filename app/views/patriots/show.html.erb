@@ -1,0 +1,532 @@
+<% provide( :title, @user.name) %>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-12">
+  <div class="x_panel" style="">
+      <div class="x_title">
+<h1>
+  
+    <%= @user.name.capitalize if @user.name %>
+    
+ 
+</h1>
+</div>
+
+
+
+
+ <div class="row profile">
+    <div class="col-md-4">
+      <div class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+          <div class="profile-userpic">
+       <%if @user.image?%>
+        <%= image_tag(@user.image_url) %>
+
+        <%else%>
+
+        <img src="../assets/fallback/default.png"/>
+        <%end%>
+
+        </div>
+           <%= @user.name.capitalize if @user.name %>
+          </div>
+          <div class="profile-usertitle-job">
+           <%= @user.type %>
+
+          </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+        <!-- SIDEBAR BUTTONS -->
+        <div class="profile-userbuttons">
+          <center><button type="button" class="btn btn-success btn-sm">OneMilMap</button></center>
+          
+        </div>
+        <!-- END SIDEBAR BUTTONS -->
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li class="active">
+             
+              <%= link_to edit_member_path(@user) do%> <i class="fa fa-user"></i>Edit Account<%end%>
+            </li>
+            
+
+          </ul>
+        </div>
+        <!-- END MENU -->
+      </div>
+    </div>
+
+    <div class="col-md-8">
+            <div class="profile-content">
+         <p>
+
+
+<%if @user.title%>
+<p>
+  <strong>Title:</strong>
+  <%= @user.title %>
+</p>
+<%end%>
+<%if @user.gender%>
+<p>
+  <strong>Gender:</strong>
+  <%= @user.gender%>
+</p>
+<% end %>
+<%if @user.phone%>
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</p>
+<%end%>
+<%if @user.email%>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email%>
+</p>
+
+<%end%>
+<%if @user.address%>
+<p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</p>
+<%end%>
+
+<%if @user.location%>
+<p>
+  <strong>Location:</strong>
+  <%= @user.location %>
+</p>
+<%end%>
+<%if @user.state%>
+<p>
+  <strong>State:</strong>
+  <%= @user.state%>
+</p>
+<%end%>
+
+<%if @user.referrer_code%>
+<p>
+  <strong>Referred By:</strong>
+  <%= @referrer.name%> <%= link_to "Profile", user_path(@referrer), style:"color:#FF0000;" %>
+</p>
+<%end%>
+
+
+
+<%if @user.provider == ''%>
+          <span>
+             signed up through on-site auth.
+          </span>
+
+<%else%>
+
+ signed up through - <%= @user.provider%> auth.
+
+          <%end%>
+          <br/>
+          <br/>
+<br/>       
+
+
+
+<%= link_to 'Edit', edit_user_path(@user), class:"btn btn-success" %> |
+
+<%= link_to 'Dashboard', root_url, class:"btn btn-info" %>
+<%= link_to "Back", :back, class:"btn btn-warning"%>
+
+
+</div>
+
+<h3 style="color:#660000;">Down Lines
+</h3>
+<ul class="tree">
+   
+   <li id="menu12">
+      <label for="menu12">
+      <a style="color:#660000;">1st Generation</a> </label>
+      <input checked="" id="menu12" value="" type="checkbox">
+      <ul>                
+
+ <% if @firstgeners.any? %>
+ <label for="menu15"><a style="color:orange;"><%= pluralize(@firstgeners.count, "Referral") %></a>
+ </label>     
+      <li id="menu13">
+            <label for="menu13" style="color:#3CB371;">Ist Generation Downlines</label>
+            <input checked="" id="menu13" value="" type="checkbox">
+            <ul>
+      <% @firstgeners.each do |user| %>
+
+         
+               <li id="menu14">
+                  <a>
+                  <label for="menu14"><b style="color:#3CB371;">Name:</b> <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:#FF0000;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+
+               </li>
+               <%end%>
+               <%else%>
+<p style="color:orange;">0 Referral</p>
+
+<%end%>
+              <li id="menu15">
+                  <a>
+                  <label for="menu14" style="color:orange;">---end---</label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+               </li>
+            </ul>
+         </li>
+      </ul>
+   </li>
+
+ <li id="menu12">
+      <label for="menu12">
+      <a style="color:#660000;">2nd Generation</a>  </label>
+      <input checked="" id="menu12" value="" type="checkbox">
+      <ul>               
+
+ <% if @secondgeners.any? %>
+ <label for="menu15"><a style="color:orange;"><%= pluralize(@secondgeners.count, "Referral") %></a>
+   </label>   
+      <li id="menu13">
+            <label for="menu13" style="color:#3CB371;">2nd Generation Downlines</label>
+            <input checked="" id="menu13" value="" type="checkbox">
+            <ul>
+      <% @secondgeners.each do |user| %>
+
+         
+               <li id="menu14">
+                  <a>
+                  <label for="menu14"><b style="color:#3CB371;">Name:</b> <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:#FF0000;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+
+               </li>
+
+               <li id="menu15">
+                  <a>
+                  <label for="menu14" style="color:orange;">---end---</label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+               </li>
+               <%end%>
+               <%else%>
+               <label for="menu12">
+      
+     
+<p style="color:orange;">0 Referral</p>
+ </label>
+
+<%end%>
+              
+            </ul>
+         </li>
+      </ul>
+   </li>
+
+
+
+
+   <li id="menu15">
+      <label for="menu15"><a style="color:#660000;">3rd Generation</a></label>
+      <input checked="" id="menu15" value="" type="checkbox">
+      <ul>
+      <% if @thirdgeners.any? %>
+ <label for="menu15">
+<a style="color:orange;"><%= pluralize(@thirdgeners.count, "Referral") %></a>
+ </label>     
+        
+         <li id="menu17">
+            <label for="menu17" style="color:#3CB371;">Ist Gen Downlines</label>
+            <input checked="" id="menu17" value="" type="checkbox">
+            <ul>
+            <% @thirdgeners.each do |user| %>
+               <li id="menu18">
+                  <a><label for="menu18"><b style="color:#3CB371;">Name:</b> <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:#FF0000;" %></label>
+                  <input checked="" id="menu18" value="" type="checkbox">
+                  </a>
+      </li>
+               <%end%>
+               <%else%>
+               <label for="menu12">
+      
+
+<a style="color:orange;">0 Referral</a>
+ </label>
+<%end%>
+              <li id="menu18">
+                  <a><label for="menu18" style="color:orange;">---end---</label>
+                  <input checked="" id="menu18" value="" type="checkbox">
+                  </a>
+               </li>
+            </ul>
+         </li>
+      </ul>
+   </li>
+ 
+
+
+</ul>
+
+
+
+
+
+
+
+
+<ul class="tree">
+   
+   <li id="menu12">
+      <label for="menu12">
+      <a style="color:#660000;">4th Generation</a>
+      </label>
+      <input checked="" id="menu12" value="" type="checkbox">
+      <ul>
+      <% if @fourthgeners.any? %>
+ <label for="menu12"><a style="color:orange;"><%= pluralize(@fourthgeners.count, "Referral") %></a></label>
+         <li id="menu13">
+            <label for="menu13">
+            <a style="color:#3CB371;">4th Generation Downlines</a></label>
+            <input checked="" id="menu13" value="" type="checkbox">
+            <% @fourthgeners.each do |user| %>
+            <ul>
+               <li id="menu14">
+                  <a>
+                  <label for="menu14"><b style="color:#3CB371;">Name:</b> <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:#FF0000;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+               </li>
+              <li id="menu15">
+                  <a>
+                  <label for="menu14" style="color:orange;">---end---</label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+               </li>
+                <%end%>
+               <%else%>
+               <label for="menu12">
+      <label for="menu12">
+
+ 
+
+<a style="color:orange;">0 Referral</a>
+ </label>
+<%end%>
+            </ul>
+         </li>
+      </ul>
+   </li>
+
+
+</ul>
+
+
+
+<ul class="tree">
+   
+   <li id="menu12">
+      <label for="menu12">
+      <a style="color:#660000;">5th Generation</a>                 
+ </label>
+      <input checked="" id="menu12" value="" type="checkbox">
+      <ul>
+ <% if @fifthgeners.any? %>
+<label for="menu12"><a style="color:orange;"><%= pluralize(@fifthgeners.count, "Referral") %></a></label>
+     
+      <li id="menu13">
+            <label for="menu13" style="color:#3CB371;">5th Generation Downlines</label>
+            <input checked="" id="menu13" value="" type="checkbox">
+            <ul>
+      <% @fifthgeners.each do |user| %>
+
+         
+               <li id="menu14">
+                  <a>
+                  <label for="menu14"><b style="color:#3CB371;">Name:</b> <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:#FF0000;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+
+               </li>
+               <li id="menu15">
+                  <a>
+                  <label for="menu14" style="color:orange;">---end---</label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+               </li>
+               <%end%>
+               <%else%>
+               <label for="menu12">
+      <label for="menu12">
+
+ 
+
+<a style="color:orange;">0 Referral</a>
+ </label>
+<%end%>
+              
+            </ul>
+         </li>
+      </ul>
+   </li>
+  
+ 
+
+</ul>
+
+<ul class="tree">
+   
+
+      <li id="menu15">
+      <label for="menu15"><a style="color:#660000;">6th Generation</a></label>
+      <input checked="" id="menu15" value="" type="checkbox">
+      <ul>
+         <% if @sixthgeners.any? %>
+<label for="menu15"><a style="color:orange;"><%= pluralize(@sixthgeners.count, "Referral") %></a></label>
+  
+         <li id="menu17">
+            <label for="menu17" style="color:#3CB371;"><a>6th Generation Downlines</a></label>
+            <input checked="" id="menu17" value="" type="checkbox">
+            <ul>
+            <% @sixthgeners.each do |user| %>
+               <li id="menu18">
+                  <a><label for="menu18"><b style="color:#3CB371;">Name:</b> <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:#FF0000;" %></label>
+                  <input checked="" id="menu18" value="" type="checkbox">
+                  </a>
+     
+               </li>
+              <li id="menu18">
+                  <a><label for="menu18" style="color:orange;">---end---</label>
+                  <input checked="" id="menu18" value="" type="checkbox">
+                  </a>
+               
+                </li>
+               <%end%>
+               <%else%>
+               <label for="menu12">
+      <label for="menu12">
+
+ 
+
+<a style="color:orange;">0 Referral</a>
+ </label>
+<%end%>
+            </ul>
+         </li>
+      </ul>
+   </li>
+
+
+</ul>
+
+<ul class="tree">
+   
+   <li id="menu12">
+      <label for="menu12">
+      <a style="color:#660000;">7th Generation</a>
+      </label>
+      <input checked="" id="menu12" value="" type="checkbox">
+      <ul>
+       <% if @seventhgeners.any? %>
+<label for="menu15"><a style="color:orange;"><%= pluralize(@seventhgeners.count, "Referral") %></a></label>
+         <li id="menu13">
+            <label for="menu13" style="color:#3CB371;"><a>7th Generation Downlines</a></label>
+            <input checked="" id="menu13" value="" type="checkbox">
+            <% @seventhgeners.each do |user| %>
+            <ul>
+               <li id="menu14">
+                  <a>
+                  <label for="menu14"><b style="color:#3CB371;">Name:</b> <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:#FF0000;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+               </li>
+              <li id="menu15">
+                  <a>
+                  <label for="menu14" style="color:orange;">---end---</label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+               </li>
+               <%end%>
+               <%else%>
+               <label for="menu12">
+      <label for="menu12">
+
+ 
+
+<a style="color:orange;">0 Referral</a>
+ </label>
+<%end%>
+            </ul>
+         </li>
+      </ul>
+   </li>
+   
+</ul>
+<ul class="tree">
+   
+   <li id="menu12">
+      <label for="menu12">
+      <a style="color:#660000;">8th Generation</a>
+      </label>
+      <input checked="" id="menu12" value="" type="checkbox">
+      <ul>
+       <% if @eightgeners.any? %>
+<label for="menu15"><a style="color:orange;"><%= pluralize(@eightgeners.count, "Referral") %></a></label>
+         <li id="menu13">
+            <label for="menu13" style="color:#3CB371;"><a>8th Generation Downlines</a></label>
+            <input checked="" id="menu13" value="" type="checkbox">
+            <% @eightgeners.each do |user| %>
+            <ul>
+               <li id="menu14">
+                  <a>
+                  <label for="menu14" ><b style="color:#3CB371;">Name:</b> <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:#FF0000;" %></label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+               </li>
+              <li id="menu15">
+                  <a>
+                  <label for="menu14" style="color:orange;">---end---</label>
+                  <input checked="" id="menu14" value="" type="checkbox">
+                  </a>
+               </li>
+                    <%end%>
+               <%else%>
+               <label for="menu12">
+      <label for="menu12">
+
+ 
+
+<a style="color:orange;">0 Referral</a>
+ </label>
+<%end%>
+            </ul>
+         </li>
+
+
+  <li id="menu20">
+    <a><label for="menu20" style="color:blue;">---end---</label>
+      <input checked="" id="menu20" value="" type="checkbox">
+    </a>
+  </li>
+      </ul>
+   </li>
+  
+</ul>
+
+</div>
+
+
+
+</div>
+

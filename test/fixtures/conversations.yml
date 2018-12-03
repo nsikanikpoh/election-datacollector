@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fundraiser: one
+  body: MyText
+
+two:
+  fundraiser: two
+  body: MyText

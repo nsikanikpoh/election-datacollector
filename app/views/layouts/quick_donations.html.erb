@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+   
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+  
+
+  <title="Quick Donation | MilMap">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <script>
+              $(document).ready(function() {
+                $("#owl-demo").owlCarousel({
+                  items : 3,
+                  lazyLoad : true,
+                  autoPlay : true,
+                  pagination : true,
+                  nav:true,
+                });
+              });
+            </script> 
+  </head>
+  <body>
+  <div id="page-wrapper">
+
+    <div class="main-page signup-page">
+    <center>
+
+
+</center>
+      
+ <% flash.each do |message_type, message| %>
+    <div class="alert alert-success" role="alert"><%= message %></div>
+  <% end %>
+  <%=yield%>
+
+    <footer>
+          <%= render partial: 'layouts/shared/footer' %>
+        </footer>
+
+  </body>
+<html>
+

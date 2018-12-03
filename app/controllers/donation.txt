@@ -1,0 +1,33 @@
+  @donation = Donation.create(amount: @res['amount'],
+          line: cookies[:line],
+          channel: @res['channel'], 
+          reference: @res['reference'], 
+          gateway_response: @res['gateway_response'],
+          currency: @res['currency'],
+          donator_id: current_user.id,
+          donator_type: current_user.type,
+          status: @res['status'], 
+          expires_on: expires_on,
+          created_at: Time.now,
+          updated_at: Time.now)
+    @donation.save
+    respond_to do |format|
+      if @donation.save
+        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
+        client.authenticate(ENV['USER'], ENV['PASSWORD'])
+        #amount = BigDecimal.new(@donation.amount.to_i)
+
+          dtype = getType(@donation)
+          crmid = client.create('new_donation', new_donationmade: @donation.amount.to_i,
+          new_donatoremail: @donation.donator.email,
+          new_donationtype: {type: "OptionSetValue", value: dtype})
+
+          contacts = [ DynamicsCRM::XML::EntityReference.new("new_donation", crmid.id)]
+          client.associate("contact", @donation.donator.crm_id, "new_contact_new_donation_donator", contacts)
+
+        format.html { redirect_to @donation, notice: 'Donation was successfully made.' }
+      else
+        format.html { render :new, notice: 'Payment Failed. Please try again' }
+      end
+    end
+   

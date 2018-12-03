@@ -1,0 +1,127 @@
+<div class="sign-up-row widget-shadow">
+<%= form_for(@user, html: { multipart: true }) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<form>
+
+
+<div class="sign-u">
+            <%= form.label :title%>
+            <%= form.select :title, ["Mr","Mrs","Miss","Master"], placeholder:"Title", required:"required"%>
+            
+   <div class="clearfix"> </div>
+          </div>
+
+
+   <div class="sign-u">
+            
+        <%= form.text_field :name, id: :user_name, required:"required", placeholder:"Full Name" %>
+            <div class="clearfix"> </div>
+          </div>
+         <div class="sign-u">
+
+    <%= form.email_field :email, autofocus: true, autocomplete: "email",  placeholder:"Email", required:"required"%>
+    <div class="clearfix"> </div>
+          </div>
+<div class="sign-u">
+            
+              <%= form.text_field :phone, id: :user_phone, placeholder:"Phone", required:"required" %>
+<div class="clearfix"> </div>
+          </div>
+ <div class="sign-u">
+    
+    <%= form.password_field :password, autocomplete: "off", placeholder:"Password", required:"required"%>
+    <div class="clearfix"> </div>
+          </div>
+ <div class="sign-u">
+            
+              <%= form.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirm Password", required:"required" %>
+<div class="clearfix"> </div>
+          </div>
+<div class="sign-u">
+  <div class="sign-up1">
+            <%= form.label :gender%>
+            </div>
+            <div class="sign-up2">
+            <%= form.select :gender, ["Male","Female"], placeholder:"Title", required:"required"%>
+            
+            </div>
+         <div class="clearfix"> </div>
+          </div>
+
+
+<div class="sign-u">
+            
+    
+    <%= form.text_field :address, id: :user_address, placeholder:"Address", required:"required"%>
+    <div class="clearfix"> </div>
+          </div>
+  <div class="sign-u">
+            <div class="sign-up1">
+    <%= form.label :state, "State" %>
+    </div>
+    <div class="sign-up2">
+    <%= form.select :state, ["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta", "Ebonyi","Edo","Ekiti","Enugu","FCT","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nassarawa","Niger","Ogun","Ondo","Osun","Oyo State","Plateau","River State","Sokoto","Taraba","Yobe","Zamfara"], placeholder:"Title", required:"required"%>
+</div>
+    <div class="clearfix"> </div>
+          </div>
+<div class="sign-u">
+            
+              <%= form.text_field :location, id: :user_city, placeholder:"City", required:"required" %>
+<div class="clearfix"> </div>
+          </div>
+<div class="sign-u">
+ <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+          <div class="profile-userpic">
+           <div class="sign-up1">
+   <%= form.label :image, "Profile Pic" %>
+ </div>
+ <span class="prfil-img">
+   <%= image_tag @user.image_url,  width: 60, height: 50  if @user.image? %>
+   <span class="prfil-img">
+   <div class="sign-up2">
+    <%= form.file_field :image, autofocus: true %>
+   <%= form.hidden_field :image_cache %>
+  
+  
+      <%= form.check_box :remove_image %>
+      Remove Profile Pic
+    
+  </div>
+  </div>
+
+          </div>
+          <div class="clearfix"> </div>
+          </div>
+<%= form.hidden_field :referral_code, value: cookies[:referrer_code] %>
+          
+          <div class="sub_home">
+               <%= form.submit "Sign up", class:"btn btn-success",style:"color:#fff; font-weight:bold;"%>
+       <div class="clearfix"> </div>
+          </div>
+
+
+<% end %>
+<br>
+<br>
+<br>
+<%=link_to "already have an account sign in", new_session_path(User), class:"btn btn-info",style:"color:#fff; font-weight:bold;"%>
+
+       
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+

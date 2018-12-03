@@ -1,0 +1,27 @@
+Facebook
+App ID: 308824592985146
+Secret: 52c46e9347350f323771800eafe82e51
+
+
+Google 
+Client ID: 612480893043-d9e7581fabprmnbi5v3n2dft0ffh9964.apps.googleusercontent.com
+
+Client Secret: 1_1UkFAeQ5svnJWZ3m3YVQTC
+
+Twitter
+
+Consumer Key (API Key)	DFOhz1Velc3rGMa0vb0yDXKFX
+Consumer Secret (API Secret)	8cli5MI4NWjsD6dYAtGMJrgDi7EbxaINT7laA8SKHL6jXTeKDe
+
+
+Linkedin
+
+Client ID:	86i2mmzbudrtm3
+ 
+Client Secret:	6ZVyjuoTi0wqmjgP
+
+
+dotenv rails s -b 'ssl://localhost:3000?key=.ssl/localhost.key&cert=.ssl/localhost.crt'
+
+
+#!/usr/local/rvm/rubies/ruby-2.4.3/bin ruby

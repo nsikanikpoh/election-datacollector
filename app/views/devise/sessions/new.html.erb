@@ -1,0 +1,79 @@
+ <div class="art-bothside">
+         <div class="sap_tabs">
+            <div id="horizontalTab">
+               <ul class="resp-tabs-list">
+                  <li class="resp-tab-item"><span>Login</span></li>
+                  <li class="resp-tab-item"><span>Sign Up</span></li>
+               </ul>
+               <div class="clearfix"> </div>
+               <div class="resp-tabs-container">
+                  <div class="tab-1 resp-tab-content">
+                     <div class="swm-right-w3ls">
+                     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                        <form>
+                           <div class="main">
+                              <div class="icon-head-wthree">
+                                 <h2>Login Here</h2>
+                              </div>
+                              <div class="form-left-w3l">
+                                  <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", required:"required" %>
+
+                              </div>
+                              <div class="form-right-w3ls ">
+                                <%= f.password_field :password, autocomplete: "off", placeholder:"Password", required:"required" %>
+                                
+                              </div>
+
+
+                              <% if devise_mapping.rememberable? -%>
+                                   <div class="field">
+                                        <%= f.check_box :remember_me%>
+                                        <%= f.label :remember_me,style:"color:#fff; font-weight:bold;" %>
+                                    </div>
+                              <% end -%>
+
+                       <br/>
+                                <div class="actions"><%= f.submit "Log in", class:"btn btn-xtl btn-info", style:"color:#fff; font-weight:bold;"%>
+                                </div>
+                               
+                            
+                           </div>
+                        </form>
+                        <% end %>
+                        <%= render "devise/shared/links" %>
+
+                        <span onMouseOver="this.style.background ='#FF0000'" onMouseOut="this.style.background ='#FFFFFF'"> 
+  <a class="for" style="color:#fff; background: #ff0000; font-weight:bold;" onMouseOver="this.style.color='#242424'" onMouseOut="this.style.color='#FFF'" href="/quick_donations/new">Quick Donation</a></span>
+                     </div>
+                  </div>
+                  <div class="tab-1 resp-tab-content">
+                     <div class="swm-left-w3ls">
+                        <form action="#" method="post">
+                           <div class="main">
+                              <div class="icon-head-wthree">
+                                 <h2>Select Category</h2>
+                              </div>
+                            
+                             
+                              <div class="btnn">
+                               <center>
+      <%= link_to "Sign up as Supporter", new_member_path, class:'btn btn-info btn-xts',style:"color:#fff; font-weight:bold;" %>
+
+      <br/><br/>
+
+      <%= link_to "Sign up as Fund Raiser", new_fund_raiser_path, class:'btn btn-success btn-xts',style:"color:#fff; font-weight:bold;"%>
+</center>
+                                
+                              </div>
+                           </div>
+                        </form>
+                        <br/>
+                        <br/>
+                          <span onMouseOver="this.style.background ='#FF0000'" onMouseOut="this.style.background ='#FFFFFF'"> 
+  <a class="for" style="color:#fff; background: #ff0000; font-weight:bold;" onMouseOver="this.style.color='#242424'" onMouseOut="this.style.color='#FFF'" href="/quick_donations/new">Quick Donation</a></span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>

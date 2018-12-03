@@ -1,0 +1,84 @@
+
+<% provide( :title, "New Donation") %>
+
+<div class="forms">
+					<h2 class="title1">New Donation</h2>
+					<div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
+						<div class="form-title">
+							<h4>Donate for a Prospect</h4>
+						</div>
+
+<%= form_for([@donation]) do |form| %>
+ <div class="form-body">
+              <form> 
+<% if @donation.errors.any? %>
+ 
+    <div id="error_explanation">
+      <h2><%= pluralize(@donation.errors.count, "error") %> prohibited this donation from being made:</h2>
+
+      <ul>
+      <% @donation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+<div class="row">
+  <div class="col-md-9 col-xs-12">
+    
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <br />
+        <form class="form-horizontal form-label-left input_mask">
+<div class="col-md-6 col-sm-12  form-group has-feedback">
+            
+<h3><i class="fa fa-gift"></i>Select Amount</h3>
+   
+      <h2><%= form.radio_button :amount, 200000, required:"required",  class:"form-control has-feedback-left" %>2,000</h2>
+    <h2><%= form.radio_button :amount, 500000, required:"required",  class:"form-control has-feedback-left" %> 5,000</h2>
+   <h2> <%= form.radio_button :amount, 1000000, required:"required",  class:"form-control has-feedback-left" %>10,000</h2>
+    <h2> <%= form.radio_button :amount, 2000000, required:"required",  class:"form-control has-feedback-left"%> 20,000</h2>
+
+          </div>
+
+
+
+          <div class="col-md-6 col-sm-12  form-group has-feedback">
+            
+<h3><i class="fa fa-sitemap"></i>Select Donation Duration</h3>
+   
+      <h2><%= form.radio_button :line, 0, required:"required",  class:"form-control has-feedback-left" %> Monthly</h2>
+    <h2><%= form.radio_button :line, 1, required:"required",  class:"form-control has-feedback-left" %> Quarterly</h2>
+    <h2><%= form.radio_button :line, 2, required:"required",  class:"form-control has-feedback-left" %>Yearly </h2>
+      
+          </div>
+         
+ 
+  <div class="col-md-6">
+   <div class="form-group">
+    <%= form.label :donator_id, "Select Prospect" %>
+    <%= form.select :donator_id,  @prospects.map{|client|[(client.name), client.id]}, include_blank: true, id: "index_of_the_client_id_select_box", class:"form-control"%>
+   </div>
+ </div>
+
+          
+          <div class="form-group">
+            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+               <%= form.submit "Submit", class:"btn btn-success"%> <br/><br/>
+ 
+               <%= link_to "Cancel", :back, class:"btn btn-warning"%>
+<% end %>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+

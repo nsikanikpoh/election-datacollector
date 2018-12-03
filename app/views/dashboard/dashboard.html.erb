@@ -1,0 +1,28 @@
+<%if current_user.patriot?%>
+    <%= render partial: 'patriot' %>
+
+<%elsif current_user.admin?%>
+
+<%= render partial: 'admin' %>
+
+<%elsif current_user.champion?%>
+
+<%= render partial: 'champion' %>
+
+<%elsif current_user.fund_raiser?%>
+
+<%= render partial: 'fund_raiser' %>
+
+<%elsif current_user.prospect?%>
+
+<%= render partial: 'prospect' %>
+
+<%elsif current_user.member?%>
+
+<%= render partial: 'member' %>
+
+<%else%>
+
+<%= render partial: 'accountupdate' %>
+
+<%end%>

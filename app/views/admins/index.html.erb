@@ -1,0 +1,53 @@
+<% provide( :title, "Admins Index") %>
+
+
+<div class="row">
+  <div class="col-md-12">
+  <div class="x_panel" style="">
+      <div class="x_title">
+
+<h1>Admin INDEX</h1>
+
+</div>
+<br>
+<br>
+<br>
+<% if @users.any? %>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Admin Name</th>
+
+      <th>Admin Phone</th>
+
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |company| %>
+      <tr>
+        <td><%= company.name %> 
+        </td>
+
+        <td><%= company.phone %> 
+        </td>
+       
+
+        
+
+        <td> <a onMouseOver="this.style.color='orange'"
+   onMouseOut="this.style.color='#73879C'" href="/members/<%=company.id%>"><i style="font-size:27px"class="fa fa-eye"></i></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+  <%= link_to 'Dashboard', root_path, class:"btn btn-info" %> | <%= link_to "Back", :back, class:"btn btn-warning"%>
+
+
+<%else%>
+
+<p style="color:red;">No Admins Registered Yet!</p>
+<%end%>

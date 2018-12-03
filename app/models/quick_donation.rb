@@ -1,0 +1,2 @@
+class QuickDonation < ApplicationRecord
+end

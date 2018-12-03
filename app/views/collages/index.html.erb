@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+<style>
+
+.container {
+   background: url(//subtlepatterns.com/patterns/scribble_light.png);
+  font-family: Calluna, Arial, sans-serif;
+  min-height: 1000px;
+  border: 2px solid #CCCCCC;
+}
+
+.item {
+  
+  background: #fefefe;
+  border: 2px solid #fcfcfc;
+  box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+  margin: 0 2px 15px;
+  padding: 15px;
+  padding-bottom: 10px;
+  transition: opacity .4s ease-in-out;
+  display: inline-block;
+  column-break-inside: avoid;
+  height: 150px;
+  width: 31%;
+  margin: 1%;
+  padding: 10px;
+}
+
+
+</style>
+
+<h1>Collages</h1>
+
+
+
+
+
+
+
+<div class="container">
+<% if @collages.any? %>
+<% @collages.each do |collage| %>
+  <div class="item">
+    <h3 onMouseOver="this.style.color='orange'"
+   onMouseOut="this.style.color='#73879C'" class ="lead">
+        <i style="font-size:27px"class="fa fa-star"> <a onMouseOver="this.style.color='orange'"
+   onMouseOut="this.style.color='#73879C'" href="/collages/<%= collage.id%>"><%= collage.title %></a></i></h3>
+
+         <a onMouseOver="this.style.color='orange'"
+   onMouseOut="this.style.color='#73879C'" href="/collages/<%=collage.id%>">
+        <i style="font-size:27px"class="fa fa-eye"></i>
+
+        </a>
+     
+<% if current_user.admin? %>
+        
+
+        <a onMouseOver="this.style.color='orange'"
+   onMouseOut="this.style.color='#73879C'" href="/collages/<%=collage.id%>/edit">
+        <i style="font-size:27px"class="fa fa-edit"></i>
+
+        </a>
+
+        <%= link_to collage, method: :delete, data: { confirm: 'Are you sure you really want to delete this collage?' } do%><i onMouseOver="this.style.color='orange'"
+   onMouseOut="this.style.color='#73879C'" style="font-size:27px"class="fa fa-trash"></i><%end%>
+    
+  
+
+    <% end %>
+    </div>
+
+
+<br>
+
+
+    <% end %>
+</div>
+     <% else %>
+ No pic Collage Created yet!
+
+     <% end %>
+
+<%= link_to 'Dashboard', root_url, class:"btn btn-info" %>
+<%= link_to "Back", :back, class:"btn btn-warning"%>

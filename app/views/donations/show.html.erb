@@ -1,0 +1,98 @@
+<% provide( :title, @donation.line) %>
+    <h2 class="title1">   Donation made by <%=@donator.name %></h2>
+          <div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
+            <div class="form-title">
+              <h4>OneMilMap Commitment</h4>
+            </div>
+  
+  
+
+</div>
+
+
+
+    
+<div class="col-md-12 panel-grids">
+            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title"> Donation Info</h3> </div> <div class="panel-body">
+        <br />
+                   <div class="pyro">
+  <div class="before"></div>
+  <div class="after"></div>
+</div>
+        <table class="table">
+
+        <tbody>
+
+
+      <tr>
+<td>
+  <strong>Channel:</strong>
+  <%= @donation.channel %>
+</td>
+</tr>
+
+      <tr>
+<td>
+  <strong>Transaction Refrence:</strong>
+  <%= @donation.reference %>
+</td>
+</tr>
+      <tr>
+<td>
+  <strong>Gateway Response:</strong>
+  <%= @donation.gateway_response %>
+</td>
+</tr>
+      <tr>
+<td>
+  <strong>Currency:</strong>
+  <%= @donation.currency %>
+</td>
+</tr>
+      <tr>
+<td>
+  <strong>Status:</strong>
+  <%= @donation.status %>
+</td>
+</tr>
+        <tr>
+<td>
+  <strong>Line:</strong>
+  <%= @donation.line %>
+</td>
+</tr>
+<tr>
+<td>
+  <strong>Amount:</strong>
+  <%= @donation.amount %>
+</td></tr>
+<tr>
+<td>
+  <strong>Expires On:</strong>
+  <%= @donation.expires_on %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>Donator:</strong>
+  <%= @donator.name %>
+</td></tr>
+
+
+
+<tr>
+<td>
+  <strong>Date Made:</strong>
+  <%= @donation.created_at %>
+
+  <%= time_ago_in_words(@donation.created_at)%> ago
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<%= link_to 'Dashboard', root_url, class:"btn btn-info" %>
+<%= link_to "Back", :back, class:"btn btn-warning"%>
+</div>

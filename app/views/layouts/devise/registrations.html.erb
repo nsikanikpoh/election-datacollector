@@ -1,0 +1,40 @@
+<html>
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+	<title="Sign Up| 1MilMap">
+	<%= stylesheet_link_tag 'application', media: 'all' %>
+ <%= javascript_include_tag 'application' %>
+	</head>
+	
+	<body>
+    <div class="container body">
+      <div class="main_container">
+		
+<div class="row">
+  <div class="col-md-12">
+
+  <div class="x_panel" style="">
+      <div class="x_title">
+    
+<center><p><img src="../assets/img/logo.png"/></p>
+
+</center>
+        <div>
+ <% flash.each do |message_type, message| %>
+		<div class="alert alert-success" role="alert"><%= message_type %>-<%= message %></div>
+	<% end %>
+	<center><%=yield%></center>
+	
+	</div>
+	</div>
+	</div>
+	</div>
+	</body>
+<html>
+
+

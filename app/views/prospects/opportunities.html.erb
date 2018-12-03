@@ -1,0 +1,46 @@
+<% provide( :title, "My Prospects") %>
+
+
+<div class="row">
+  <div class="col-md-12">
+  <div class="x_panel" style="">
+      <div class="x_title">
+
+<h1>My Prospects with Opportunities</h1>
+
+</div>
+<br>
+<br>
+<br>
+<% if @users.any? %>
+
+<%= pluralize @users.size,'Prospect' %> 
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Prospect Name</th>
+
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |company| %>
+      <tr>
+        <td><%= company.name %> 
+        </td>
+       
+        <td><%= link_to 'view', company , class:"btn btn-info btn-xs"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+  <%= link_to 'Dashboard', root_path, class:"btn btn-info" %> | <%= link_to "Back", :back, class:"btn btn-warning"%>
+
+
+<%else%>
+
+<p style="color:red;">You have no prospect with opportunity yet!</p>
+<%end%>

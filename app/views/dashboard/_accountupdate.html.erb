@@ -1,0 +1,123 @@
+
+<% provide( :title, "Account Update") %>
+
+ <div class="login-page ">
+ 
+<h2 class="title1">
+  
+  Please Update your Acount to continue
+</h2>
+<div class="sign-up-row widget-shadow">
+
+<%= form_for(@user, url: dashboard_accountupdate_url) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row">
+
+
+<div class="col-md-9 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Account Update Form</h2>
+        <ul class="nav navbar-right panel_toolbox">
+         
+        
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <br />
+        <form class="form-horizontal form-label-left input_mask">
+
+
+
+
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            
+<%= form.hidden_field :user, { :value => current_user } %>
+
+          <%= form.label :name, "Name" %>
+        <%= form.text_field :name, id: :user_name, class:"form-control", placeholder:"Full Name", type:"text", required:"required"  %>
+            
+            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            
+    <%= form.label :email, "Email" %>
+    <%= form.email_field :email, autofocus: true, autocomplete: "email",  class:"form-control has-feedback-left", placeholder:"Email", type:"text", required:"required" %>
+  <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+          </div>
+
+
+ <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= form.label :type, "Sign me up as Supporter or FundRaiser..? If Supporter select Member"%>
+            <%= form.select :type, ["Member","FundRaiser"], class:"form-control has-feedback-left", placeholder:"Signup Type", type:"text", required:"required" %>
+            
+            
+          </div>
+
+
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            
+                <%= form.label :phone, "Phone"%>
+              <%= form.text_field :phone, id: :user_phone, class:"form-control", placeholder:"Phone", type:"text", required:"required" %>
+
+            <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+          </div>
+
+ <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= form.label :gender%>
+            <%= form.select :gender, ["Male","Female"], class:"form-control has-feedback-left", placeholder:"Gender", type:"text", required:"required" %>
+            
+            
+          </div>
+
+
+
+
+   <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            
+    <%= form.label :state, "State" %>
+    
+    <%= form.select :state, ["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta", "Ebonyi","Edo","Ekiti","Enugu","FCT","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nassarawa","Niger","Ogun","Ondo","Osun","Oyo State","Plateau","River State","Sokoto","Taraba","Yobe","Zamfara"], class:"form-control has-feedback-left", placeholder:"Title", type:"text", required:"required" %>
+          </div>
+
+
+
+
+
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            
+                <%= form.label :location , "Location"%>
+              <%= form.text_field :location, id: :user_city , class:"form-control", placeholder:"City", type:"text", required:"required"  %>
+
+            <span class="fa fa-briefcase form-control-feedback right" aria-hidden="true"></span>
+          </div>
+
+
+          
+          <div class="form-group">
+            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+               <%= form.submit "Sign up", class:"btn btn-success"%>
+     </div>
+     
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+<%end%>
+
+

@@ -1,0 +1,81 @@
+<% provide( :title, "Interest Line Index") %>
+
+
+  <h2 class="title1">Interest Lines</h2>
+          <div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
+            <div class="form-title">
+              <h4>Supporters Interests</h4>
+            </div>
+  
+  
+</div>
+
+
+
+    
+<div class="col-md-12 panel-grids">
+            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title"> Details</h3> </div> <div class="panel-body">
+<br>
+<br>
+<br>
+  <a   onMouseOver="this.style.color='orange'"
+   onMouseOut="this.style.color='#73879C'" href="/interest_lines/new"><i style="font-size:27px;"class="fa fa-plus">New Interest Line</i></a>
+<% if @interest_lines.any? %>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th>Description</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @interest_lines.each do |company| %>
+      <tr>
+        <td><%= company.name %> 
+        </td>
+
+        <td><%= company.description %> 
+        </td>
+       
+
+        <%if current_user.admin?%>
+
+        <td>
+        <a  onMouseOver="this.style.color='orange'"
+   onMouseOut="this.style.color='#73879C'" href="/interest_lines/<%=company.id%>"><i style="font-size:27px"class="fa fa-eye"></i></a></td>
+        <td>
+        
+        <%= link_to company, method: :delete, data: { confirm: 'Are you sure you want to delete this?' } do%><i onMouseOver="this.style.color='red'"
+   onMouseOut="this.style.color='#73879C'" style="font-size:27px"class="fa fa-trash"></i><%end%></td>
+      </tr>
+      <%elsif current_user.patriot?%>
+
+               <td>
+        <a  onMouseOver="this.style.color='orange'"
+   onMouseOut="this.style.color='#73879C'" href="/interest_lines/<%=company.id%>/addinterest"><i style="font-size:27px"class="fa fa-eye">Choose</i></a></td>
+        <td>
+
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+  <%= link_to 'Dashboard', root_path, class:"btn btn-info" %> | <%= link_to "Back", :back, class:"btn btn-warning"%>
+
+
+<%else%>
+
+<p style="color:red;">No Interest Line entered Yet!</p>
+<%end%>
+
+
+
+
+
+
+

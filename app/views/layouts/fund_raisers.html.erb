@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+   
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+  
+
+  <title="Supportter Sign up|1MilMap">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <script>
+              $(document).ready(function() {
+                $("#owl-demo").owlCarousel({
+                  items : 3,
+                  lazyLoad : true,
+                  autoPlay : true,
+                  pagination : true,
+                  nav:true,
+                });
+              });
+            </script> 
+  </head>
+  <body>
+  <div class="alert alert-success" role="alert" style="width:100%; background-color: #fff;"><h1 style="color:#ff0000;">
+    <center>  <img src="../assets/img/logo.png" style="float:left;"/> Welcome to MilMap
+      </h1></center>
+      
+  <div id="page-wrapper" style="background-image: url('../assets/img/be.jpeg')">
+
+    <div class="main-page signup-page">
+    <center>
+
+</center>
+        <div>
+ <% flash.each do |message_type, message| %>
+    <div class="alert alert-success" role="alert"><%= message %></div>
+  <% end %>
+  <%=yield%>
+  
+  </div>
+  </div>
+    <footer>
+          <%= render partial: 'layouts/shared/footer' %>
+        </footer>
+
+  </body>
+<html>
+

@@ -1,0 +1,26 @@
+<%if current_user.patriot?%>
+    <%= render partial: 'layouts/shared/patriot' %>
+
+<%elsif current_user.admin?%>
+
+<%= render partial: 'layouts/shared/admin' %>
+
+<%elsif current_user.champion?%>
+
+<%= render partial: 'layouts/shared/champion' %>
+<%elsif current_user.fund_raiser?%>
+
+<%= render partial: 'layouts/shared/fund_raiser' %>
+<%elsif current_user.prospect?%>
+
+<%= render partial: 'layouts/shared/prospect' %>
+
+<%elsif current_user.member?%>
+
+<%= render partial: 'layouts/shared/member' %>
+
+<%elsif current_user.ambassador?%>
+
+<%= render partial: 'layouts/shared/ambassador' %>
+
+<%end%>
