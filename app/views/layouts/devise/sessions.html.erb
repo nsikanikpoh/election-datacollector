@@ -30,11 +30,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
       </h1></center>
        </div>
        <div style="width:400px;float:center;">
-       <center>     
+         
  <% flash.each do |message_type, message| %>
-    <div class="alert alert-success" role="alert"><%= message %></div>
+    <div class="alert alert-success" role="alert">  <center> <%= message %></center> </div>
   <% end %>
-    </div></center>
+    </div>
   <%=yield%>
 
              <div class="copy">
