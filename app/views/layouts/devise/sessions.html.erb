@@ -29,12 +29,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <center>  <img src="../assets/img/logo.png" style="float:left;"/> Welcome to MilMap
       </h1></center>
        </div>
-       <div style="width:400px;float:center;">
-         
- <% flash.each do |message_type, message| %>
-    <div class="alert alert-success" role="alert">  <center> <%= message %></center> </div>
-  <% end %>
-    </div>
+     
   <%=yield%>
 
              <div class="copy">
