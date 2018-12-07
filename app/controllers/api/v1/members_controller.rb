@@ -17,9 +17,20 @@ class Api::V1::MembersController < Api::V1::BaseController
   # GET /users/1.json
    def show
      if user
-        render json: user,serializer: Api::V1::MembersSerializer, :status => 201
+       
+         respond_to do |format|
+        format.json do
+             render json: user,serializer: Api::V1::MembersSerializer, :status => 201
+        end
+      end
+
+
        else
-         render json: "errors", :status => 422
+         respond_to do |format|
+        format.json do
+             render json: "errors", :status => 422
+        end
+      end
        end  
   end
 
@@ -57,9 +68,19 @@ def create
         crmid = res.id
         user.update(crm_id: crmid)
         sign_in(user)
-        render json: user,serializer: Api::V1::MembersSerializer, :status => 201
+
+        respond_to do |format|
+        format.json do
+             render json: user,serializer: Api::V1::MembersSerializer, :status => 201
+        end
+      end
        else
-         render json: "errors", :status => 422
+        respond_to do |format|
+        format.json do
+             render json: "errors", :status => 422
+        end
+      end
+         
        end  
  end
   # PATCH/PUT /users/1

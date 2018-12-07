@@ -5,7 +5,11 @@ class Api::V1::CollagesController < Api::V1::BaseController
   # GET /collages.json
   def index
     @collages = Collage.all
-    render json: @collages, each_serializer: Api::V1::CollagesSerializer
+     respond_to do |format|
+        format.json do
+                render json: @collages, each_serializer: Api::V1::CollagesSerializer
+        end
+      end
   end
 
   # GET /collages/1

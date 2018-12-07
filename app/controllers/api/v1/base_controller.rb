@@ -15,7 +15,12 @@ class Api::V1::BaseController < ApplicationController
         sign_in(user) unless user
         @current_user = user
       else
-        render json: { error: 'Not Authorized' }, status: 401
+         respond_to do |format|
+        format.json do
+            render json: { error: 'Not Authorized' }, status: 401
+        end
+      end
+        
       end
   end
 
