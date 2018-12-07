@@ -2,6 +2,9 @@ class Api::V1::MembersController < Api::V1::BaseController
   skip_before_action :authenticate_user!, only: [:create]
   skip_before_action :verify_authenticity_token
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_mime_types
+
+  respond_to :json
    #before_action :authenticate_with_token!, only: [:update, :destroy]
    
   # GET /users
@@ -17,20 +20,9 @@ class Api::V1::MembersController < Api::V1::BaseController
   # GET /users/1.json
    def show
      if user
-       
-         respond_to do |format|
-        format.json do
-             render json: user,serializer: Api::V1::MembersSerializer, :status => 201
-        end
-      end
-
-
+        render json: user,serializer: Api::V1::MembersSerializer, :status => 201
        else
-         respond_to do |format|
-        format.json do
-             render json: "errors", :status => 422
-        end
-      end
+         render json: "errors", :status => 422
        end  
   end
 
@@ -68,19 +60,9 @@ def create
         crmid = res.id
         user.update(crm_id: crmid)
         sign_in(user)
-
-        respond_to do |format|
-        format.json do
-             render json: user,serializer: Api::V1::MembersSerializer, :status => 201
-        end
-      end
+        render json: user,serializer: Api::V1::MembersSerializer, :status => 201
        else
-        respond_to do |format|
-        format.json do
-             render json: "errors", :status => 422
-        end
-      end
-         
+         render json: "errors", :status => 422
        end  
  end
   # PATCH/PUT /users/1

@@ -1,15 +1,13 @@
 class Api::V1::CollagesController < Api::V1::BaseController
   before_action :set_collage, only: [:show, :edit, :update, :destroy]
+before_action :check_mime_types
 
+  respond_to :json
   # GET /collages
   # GET /collages.json
   def index
     @collages = Collage.all
-     respond_to do |format|
-        format.json do
-                render json: @collages, each_serializer: Api::V1::CollagesSerializer
-        end
-      end
+    render json: @collages, each_serializer: Api::V1::CollagesSerializer
   end
 
   # GET /collages/1
