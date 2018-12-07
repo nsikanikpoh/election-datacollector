@@ -17,9 +17,9 @@ class User < ApplicationRecord
 
   def affiliate_link
     if self.is_a?(FundRaiser)
-        self.url = "https://localhost:3000/prospects/new/?referrer_code=#{self.affiliate_code}"
+        self.url = "https://milmap.herokuapp.com/prospects/new/?referrer_code=#{self.affiliate_code}"
     elsif self.is_a?(Member)
-         self.url = "https://localhost:3000/members/new/?referrer_code=#{self.affiliate_code}"
+         self.url = "https://milmap.herokuapp.com/members/new/?referrer_code=#{self.affiliate_code}"
      end
   end
   # Include default devise modules. Others available are:
