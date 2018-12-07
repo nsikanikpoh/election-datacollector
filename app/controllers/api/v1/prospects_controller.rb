@@ -20,9 +20,9 @@ class Api::V1::ProspectsController < Api::V1::BaseController
 
 def getGender(user)
     if user.gender == "Female"
-          return 100000001
+          return 2
         elsif user.gender == "Male"
-          return 100000000
+          return 1
         end
 end
 
@@ -45,7 +45,7 @@ end
         fname = namel[0]
         lname = namel[1]
           sexint = getGender(@user)
-          typeint = 100000004
+          typeint = 100000000
         
 
         client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})

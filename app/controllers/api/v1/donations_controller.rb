@@ -39,6 +39,22 @@ skip_before_action :verify_authenticity_token
   def edit
   end
 
+    def insert_to_crm(donation)
+
+        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
+        client.authenticate(ENV['USER'], ENV['PASSWORD'])
+   
+        #amount = BigDecimal.new(@donation.amount.to_i)
+
+          dtype = getType(donation)
+          crmid = client.create('new_donation', new_amountdonated: donation.amount.to_i,
+          new_donationtype: {type: "OptionSetValue", value: dtype})
+
+          contacts = [ DynamicsCRM::XML::EntityReference.new("new_donation", crmid.id)]
+          client.associate("contact", donation.donator.crm_id, "new_contact_new_donation_Donator", contacts)
+
+end
+
 def fundraiser_donate
     cookies[:donator_id] = params[:donator_id]
      cookies[:line] = params[:line]
@@ -82,6 +98,7 @@ def fundraiser_donate
        @donation.save 
       if @donation.save
 
+        insert_to_crm(@donation)
         @donator = User.find(@donation.donator_id)
       render json: {
     donation: @donation, each_serializer: Api::V1::DonationsSerializer, 
@@ -172,7 +189,7 @@ def getType(user)
           updated_at: Time.now)
     @donation.save 
     if @donation.save
-
+      insert_to_crm(@donation)
         @donator = User.find(@donation.donator_id)
       render json: {
    donation: @donation, each_serializer: Api::V1::DonationsSerializer, 

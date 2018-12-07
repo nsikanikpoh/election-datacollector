@@ -1,0 +1,2 @@
+module JoinNowHelper
+end

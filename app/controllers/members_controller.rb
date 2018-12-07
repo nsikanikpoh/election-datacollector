@@ -165,9 +165,9 @@ def create_affiliation(affiliate, referrer)
 
 def getGender(user)
     if user.gender == "Female"
-          return 100000001
+          return 2
         elsif user.gender == "Male"
-          return 100000000
+          return 1
         end
 end
 
@@ -203,7 +203,7 @@ if referrer_code.present?
         lname = namel[1]
 
           sexint = getGender(@user)
-          typeint = 100000000
+          typeint = 100000001
       
 
         client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
@@ -239,7 +239,7 @@ else
         lname = namel[1]
 
           sexint = getGender(@user)
-          typeint = 100000000
+          typeint = 100000001
       
 
         client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})

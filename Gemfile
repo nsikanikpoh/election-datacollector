@@ -76,6 +76,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 #gem 'omniauth-instagram'
 gem 'dynamics_crm', :git => 'https://github.com/nsikanikpoh/crmsly.git'
+#gem 'dynamics_crm'
+
 # Use Omniautbundle updath Google plugin
 gem 'omniauth-google-oauth2'
 # Use Omniauth Twitter plugin
@@ -83,7 +85,7 @@ gem 'omniauth-twitter'
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store'
 
-gem 'dotenv', group: :production
+gem 'dotenv'
 #gem 'thin'
 #gem 'wicked_pdf'
 gem 'kaminari'

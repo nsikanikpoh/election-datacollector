@@ -15,17 +15,11 @@ class CallcenterController < ApplicationController
       
         			result = res.id
 
-        			redirect_to 'https://next2you0.crm4.dynamics.com:443/main.aspx?etc=2&id='+result+'&histKey=391164297&newWindow=true&pagetype=entityrecord' and return
-        	 	
-        	 		
-        	 else
-
-        	 		
+        			redirect_to 'https://nativedge.crm4.dynamics.com:443/main.aspx?etc=2&id='+result+'&histKey=391164297&newWindow=true&pagetype=entityrecord' and return
+        	 else	
         	 		result = res.entities[0].id
         	 	
-        	 		redirect_to 'https://next2you0.crm4.dynamics.com:443/main.aspx?etc=2&id='+result+'&histKey=391164297&newWindow=true&pagetype=entityrecord' and return
-        	 	
-        			
+        	 		redirect_to 'https://nativedge.crm4.dynamics.com:443/main.aspx?etc=2&id='+result+'&histKey=391164297&newWindow=true&pagetype=entityrecord' and return
 
         	 end
 

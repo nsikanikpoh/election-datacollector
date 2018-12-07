@@ -33,6 +33,21 @@ class DonationsController < ApplicationController
     @donation = Donation.new()
   end
 
+  def insert_to_crm(donation)
+
+        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
+        client.authenticate(ENV['USER'], ENV['PASSWORD'])
+   
+        #amount = BigDecimal.new(@donation.amount.to_i)
+
+          dtype = getType(donation)
+          crmid = client.create('new_donation', new_amountdonated: donation.amount.to_i,
+          new_donationtype: {type: "OptionSetValue", value: dtype})
+
+          contacts = [ DynamicsCRM::XML::EntityReference.new("new_donation", crmid.id)]
+          client.associate("contact", donation.donator.crm_id, "new_contact_new_donation_Donator", contacts)
+
+end
 
   def makepayment
     transaction_reference = params[:trxref]
@@ -71,6 +86,7 @@ class DonationsController < ApplicationController
                       expires_on: expires_on,
                       created_at: Time.now,
                       updated_at: Time.now)
+                insert_to_crm(donation)
 
             else
                   if cookies[:interest_line]
@@ -113,6 +129,7 @@ class DonationsController < ApplicationController
                     expires_on: expires_on,
                     created_at: Time.now,
                     updated_at: Time.now)
+                     insert_to_crm(donation)
 
                         if (@res['amount'].to_f)/100 >= 24000
                             if current_user.type == "Member" || current_user.type == "Champion" 

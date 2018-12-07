@@ -25,21 +25,21 @@ class QuickDonationsController < ApplicationController
   # POST /quick_donations
   # POST /quick_donations.json
   def create
-    cookies[:email] = params[:quick_donation][:email]
-    cookies[:name] = params[:quick_donation][:name]
-    cookies[:tel] = params[:quick_donation][:tel]
+    cookies[:email] = quick_donation_params[:email]
+    cookies[:name] = quick_donation_params[:name]
+    cookies[:tel] = quick_donation_params[:tel]
 
     ref = SecureRandom.hex
     cookies[:ref] = ref
-    namel = params[:quick_donation][:name].split(' ')
+    namel = quick_donation_params[:name].split(' ')
     fname = namel[0]
     lname = namel[1]
     paystackObj = Paystack.new(ENV['PUBLIC_KEY_TEST'], ENV['SECRET_KEY_TEST'])
     transactions = PaystackTransactions.new(paystackObj)
     result = transactions.initializeTransaction(
     :reference => ref,
-    :amount => params[:quick_donation][:amount].to_i*100,
-    :email => params[:quick_donation][:email],
+    :amount => quick_donation_params[:amount].to_i*100,
+    :email => quick_donation_params[:email],
     :firstname => fname,
     :lastname => lname
     )
@@ -83,6 +83,6 @@ class QuickDonationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quick_donation_params
-      params.require(:quick_donation).permit(:tel, :email, :amount)
+      params.require(:quick_donation).permit(:name, :tel, :email, :amount)
     end
 end

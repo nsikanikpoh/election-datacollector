@@ -208,14 +208,15 @@ def create
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    
-    respond_to do |format|
+    user=User.find(params[:id])
+    user.update(user_params)
+ 
       if user.update(user_params)
-        format.json{render :json => user.to_json, :status => :ok, location: [:api, user]}
+          render json: user,serializer: Api::V1::UserSerializer, :status => 201
        else
-         format.json { render :json => user.errors, status: :unprocessable_entity }
+        render :json => user.errors, status: :unprocessable_entity 
        end
-    end
+  
   end
 
   # DELETE /users/1

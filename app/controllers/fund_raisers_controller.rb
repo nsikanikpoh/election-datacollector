@@ -113,9 +113,9 @@ def create_affiliation(affiliate, referrer)
 
 def getGender(user)
     if user.gender == "Female"
-          return 100000001
+          return 2
         elsif user.gender == "Male"
-          return 100000000
+          return 1
         end
 end
   # POST /users
@@ -149,7 +149,7 @@ if referrer_code.present?
         lname = namel[1]
 
           sexint = getGender(user)
-          typeint = 100000003
+          typeint = 100000004
         
 
         client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
@@ -181,6 +181,26 @@ else
       if @user.save
         code = @user.id + 24523009
         @user.update(affiliate_code: code)
+         create_affiliation(@affiliate, @user)
+
+         namel =user.name.split(' ')
+        fname = namel[0]
+        lname = namel[1]
+
+          sexint = getGender(user)
+          typeint = 100000004
+        
+
+        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
+        client.authenticate(ENV['USER'], ENV['PASSWORD'])
+   
+        res = client.create('contact', firstname: fname, lastname: lname, emailaddress1: user.email, 
+          gendercode: {type: "OptionSetValue", value: sexint}, mobilephone: user.phone, 
+          address1_stateorprovince: user.state, new_supportertype: {type: "OptionSetValue", value: typeint})
+      
+        crmid = res.id
+        @user.update(crm_id: crmid)
+        
         sign_in(@user)
         format.html { redirect_to root_path, notice: 'Fund Raiser Account was successfully created. Thank you!' }
         format.json { render :show, status: :created, location: @user }

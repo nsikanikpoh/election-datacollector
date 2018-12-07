@@ -34,24 +34,25 @@
 
 
                               <% if devise_mapping.rememberable? -%>
-                                   <div class="field">
+                                   <div style="float:left;" class="field">
                                         <%= f.check_box :remember_me%>
                                         <%= f.label :remember_me,style:"color:#fff; font-weight:bold;" %>
                                     </div>
                               <% end -%>
 
-                       <br/>
-                                <div class="actions"><%= f.submit "Log in", class:"btn btn-xtl btn-info", style:"color:#fff; font-weight:bold;"%>
+                      
+                                <div style="float:right;" class="actions"><%= f.submit "  Sign in  ", class:"btn btn-lg btn-info", style:"color:#fff; font-weight:bold;"%>
                                 </div>
                                
                             
                            </div>
                         </form>
                         <% end %>
+                        <br/>
+                         <br/>
                         <%= render "devise/shared/links" %>
-<br/>
-                        <span onMouseOver="this.style.background ='#FF0000'" onMouseOut="this.style.background ='#FFFFFF'"> 
-  <a class="for" style="color:#fff; background: #ff0000; font-weight:bold;" onMouseOver="this.style.color='#242424'" onMouseOut="this.style.color='#FFF'" href="/quick_donations/new">Quick Donation</a></span>
+
+                       
                      </div>
                   </div>
                   <div class="tab-1 resp-tab-content">
@@ -77,8 +78,7 @@
                         </form>
                         <br/>
                         <br/>
-                          <span onMouseOver="this.style.background ='#FF0000'" onMouseOut="this.style.background ='#FFFFFF'"> 
-  <a class="for" style="color:#fff; background: #ff0000; font-weight:bold;" onMouseOver="this.style.color='#242424'" onMouseOut="this.style.color='#FFF'" href="/quick_donations/new">Quick Donation</a></span>
+                         
                      </div>
                   </div>
                </div>

@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     get 'sponsorship_history' => 'sponsorships#sponsorship_history'
 
     get 'upgrade' => 'donations#upgrade'
-   
+   get 'join_now' => 'join_now#index'
     get 'crm_check' => 'callcenter#crm_check'
     get 'donate_for_prospect' => 'donations#donate_for_prospect'
     get 'qualifies' => 'prospects#qualifies'
@@ -105,7 +105,7 @@ end
      
 		#resources :donations
     #devise_for :users
-      resources :users
+      resources :users, :only => [:update]
   	 resources :quick_donations
    		resources :members, :only => [:show, :create, :update, :destroy]
       resources :sessions, :only => [:create, :destroy]
