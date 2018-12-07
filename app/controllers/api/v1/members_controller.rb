@@ -2,8 +2,6 @@ class Api::V1::MembersController < Api::V1::BaseController
   skip_before_action :authenticate_user!, only: [:create]
   skip_before_action :verify_authenticity_token
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_mime_types
-
   respond_to :json
    #before_action :authenticate_with_token!, only: [:update, :destroy]
    

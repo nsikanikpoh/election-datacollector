@@ -2,10 +2,8 @@ class Api::V1::BaseController < ApplicationController
   before_action :authenticate_user!
 
  rescue_from ActiveRecord::RecordNotFound, with: :not_found
-before_action :check_mime_types
-
   respond_to :json
-  
+
   def not_found
     return api_error(status: 404, errors: 'Not found')
   end
