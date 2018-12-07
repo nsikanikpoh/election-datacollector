@@ -108,6 +108,7 @@ end
       if @user.save
         code = @user.id + 24523009
         @user.update(affiliate_code: code)
+        namel =@user.name.split(' ')
         fname = namel[0]
         lname = namel[1]
           sexint = getGender(@user)

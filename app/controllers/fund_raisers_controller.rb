@@ -144,7 +144,7 @@ if referrer_code.present?
         @user.update(affiliate_code: code)
         create_affiliation(@affiliate, @user)
 
-         namel =user.name.split(' ')
+         namel =@user.name.split(' ')
         fname = namel[0]
         lname = namel[1]
 
@@ -183,7 +183,7 @@ else
         @user.update(affiliate_code: code)
          create_affiliation(@affiliate, @user)
 
-         namel =user.name.split(' ')
+         namel =@user.name.split(' ')
         fname = namel[0]
         lname = namel[1]
 
