@@ -93,8 +93,8 @@ end
   # POST /donations
   # POST /donations.json
   def create
-    cookies[:interest_line_id] = params[:interest_line_id]
-    transaction_reference = params[:reference]
+    cookies[:interest_line_id] = params[:sponsorship][:interest_line_id]
+    transaction_reference = params[:sponsorship][:reference]
     paystackObj = Paystack.new(ENV['PUBLIC_KEY_TEST'], ENV['SECRET_KEY_TEST'])
     transactions = PaystackTransactions.new(paystackObj)
     result = transactions.verify(transaction_reference)
