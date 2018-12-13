@@ -56,9 +56,9 @@ skip_before_action :verify_authenticity_token
 end
 
 def fundraiser_donate
-    cookies[:donator_id] = params[:donator_id]
-     cookies[:line] = params[:line]
-    transaction_reference = params[:reference]
+    cookies[:donator_id] = params[:donation][:donator_id]
+     cookies[:line] = params[:donation][:line]
+    transaction_reference = params[:donation][:reference]
     paystackObj = Paystack.new(ENV['PUBLIC_KEY_TEST'], ENV['SECRET_KEY_TEST'])
     transactions = PaystackTransactions.new(paystackObj)
     result = transactions.verify(transaction_reference)
@@ -157,8 +157,8 @@ def getType(user)
   # POST /donations
   # POST /donations.json
   def create
-    cookies[:line] = params[:line]
-    transaction_reference = params[:reference]
+    cookies[:line] = params[:donation][:line]
+    transaction_reference = params[:donation][:reference]
     paystackObj = Paystack.new(ENV['PUBLIC_KEY_TEST'], ENV['SECRET_KEY_TEST'])
     transactions = PaystackTransactions.new(paystackObj)
     result = transactions.verify(transaction_reference)

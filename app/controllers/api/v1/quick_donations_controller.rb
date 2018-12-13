@@ -51,6 +51,9 @@ class Api::V1::QuickDonationsController < Api::V1::BaseController
     else    
         format.json { render :json => @quick_donation.errors, status: :unprocessable_entity}
     end
+
+  else
+    format.json { render :json => @quick_donation.errors, status: :unprocessable_entity}
   end
 end
 
