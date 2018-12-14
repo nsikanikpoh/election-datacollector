@@ -99,8 +99,8 @@ end
     result = transactions.verify(transaction_reference)
     if result['data']['status'] == "success"
         @res = result['data']
-          @donation = Sponsorship.create(amount: (@res['amount'].to_f)/100,
-          interest_line_id: cookies[:interest_line_id].to_i,
+        line = InterestLine.find(cookies[:interest_line_id].to_i)
+          @donation = line.sponsorships.create(amount: (@res['amount'].to_f)/100,
           channel: @res['channel'], 
           reference: @res['reference'], 
           gateway_response: @res['gateway_response'],
