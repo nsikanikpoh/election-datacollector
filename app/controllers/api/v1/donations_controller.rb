@@ -195,8 +195,8 @@ def getType(user)
      # insert_to_crm(@donation)
        
       render json: {
-   donation: @donation, each_serializer: Api::V1::DonationsSerializer, 
-    donator: @current_user, each_serializer: Api::V1::UserSerializer,
+   donation: @donation, each_serializer: Api::V1::DonationsSerializer.as_json, 
+    donator: @current_user, each_serializer: Api::V1::UserSerializer.as_json,
    } 
      else    
         format.json { render :json => @donation.errors, status: :unprocessable_entity}
