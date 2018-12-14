@@ -122,8 +122,10 @@ end
       end
   else    
         format.json { render :json => errors, status: :unprocessable_entity}
-      
+  end     
 end
+
+
 
       
   # PATCH/PUT /donations/1
