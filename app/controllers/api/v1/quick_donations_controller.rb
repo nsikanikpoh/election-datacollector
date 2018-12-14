@@ -24,10 +24,10 @@ class Api::V1::QuickDonationsController < Api::V1::BaseController
   # POST /quick_donations
   # POST /quick_donations.json
   def create
-    cookies[:email] = params[:quick_donation][:email]
-    cookies[:name] = params[:quick_donation][:name]
-    cookies[:tel] = params[:quick_donation][:tel]
-    transaction_reference = params[:quick_donation][:reference]
+    cookies[:email] = params[:donation][:email]
+    cookies[:name] = params[:donation][:name]
+    cookies[:tel] = params[:donation][:tel]
+    transaction_reference = params[:donation][:reference]
     paystackObj = Paystack.new(ENV['PUBLIC_KEY_TEST'], ENV['SECRET_KEY_TEST'])
     transactions = PaystackTransactions.new(paystackObj)
     result = transactions.verify(transaction_reference)

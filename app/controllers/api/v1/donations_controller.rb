@@ -195,7 +195,7 @@ def getType(user)
    donation: @donation, each_serializer: Api::V1::DonationsSerializer, 
     donator: @donator, each_serializer: Api::V1::UserSerializer,
    } 
-      else    
+  else    
         format.json { render :json => @donation.errors, status: :unprocessable_entity}
   end
 end
