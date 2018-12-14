@@ -118,10 +118,10 @@ end
       render json: @donation, each_serializer: Api::V1::SponsorshipsSerializer
 
       else    
-        format.json { render :json => @donation.errors, status: :unprocessable_entity}
+        render :json => @donation.errors, status: :unprocessable_entity
       end
   else    
-        format.json { render :json => errors, status: :unprocessable_entity}
+        render :json => errors, status: :unprocessable_entity
   end     
 end
 
