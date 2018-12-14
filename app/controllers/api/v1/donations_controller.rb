@@ -99,10 +99,10 @@ def fundraiser_donate
       if @donation.save
 
        # insert_to_crm(@donation)
-        @donator = User.find(@donation.donator_id)
+        
       render json: {
     donation: @donation, each_serializer: Api::V1::DonationsSerializer, 
-    donator: @donator, each_serializer: Api::V1::UserSerializer,
+    donator: user, each_serializer: Api::V1::UserSerializer,
    }
       else    
         format.json { render :json => @donation.errors, status: :unprocessable_entity}
@@ -193,10 +193,10 @@ def getType(user)
     @donation.save 
     if @donation.save
      # insert_to_crm(@donation)
-        @donator = User.find(@donation.donator_id)
+       
       render json: {
    donation: @donation, each_serializer: Api::V1::DonationsSerializer, 
-    donator: @donator, each_serializer: Api::V1::UserSerializer,
+    donator: @current_user, each_serializer: Api::V1::UserSerializer,
    } 
      else    
         format.json { render :json => @donation.errors, status: :unprocessable_entity}
