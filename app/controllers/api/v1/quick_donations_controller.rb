@@ -47,7 +47,7 @@ class Api::V1::QuickDonationsController < Api::V1::BaseController
                       updated_at: Time.now)
       @quick_donation.save
     if @quick_donation.save
-        render json: @quick_donationdonation, each_serializer: Api::V1::QuickDonationsSerializer 
+        render json: @quick_donation, each_serializer: Api::V1::QuickDonationsSerializer 
     else    
         format.json { render :json => @quick_donation.errors, status: :unprocessable_entity}
     end
