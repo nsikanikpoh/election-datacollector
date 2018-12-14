@@ -98,7 +98,7 @@ def fundraiser_donate
        @donation.save 
       if @donation.save
 
-        insert_to_crm(@donation)
+       # insert_to_crm(@donation)
         @donator = User.find(@donation.donator_id)
       render json: {
     donation: @donation, each_serializer: Api::V1::DonationsSerializer, 
@@ -189,7 +189,7 @@ def getType(user)
           updated_at: Time.now)
     @donation.save 
     if @donation.save
-      insert_to_crm(@donation)
+     # insert_to_crm(@donation)
         @donator = User.find(@donation.donator_id)
       render json: {
    donation: @donation, each_serializer: Api::V1::DonationsSerializer, 
