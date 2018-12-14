@@ -89,18 +89,16 @@ def getType(user)
 end
 
 
-
   # POST /donations
   # POST /donations.json
   def create
-    cookies[:interest_line_id] = params[:sponsorship][:interest_line_id]
-    transaction_reference = params[:sponsorship][:reference]
+    cookies[:interest_line_id] = params[:donation][:interest_line_id]
+    transaction_reference = params[:donation][:reference]
     paystackObj = Paystack.new(ENV['PUBLIC_KEY_TEST'], ENV['SECRET_KEY_TEST'])
     transactions = PaystackTransactions.new(paystackObj)
     result = transactions.verify(transaction_reference)
     if result['data']['status'] == "success"
         @res = result['data']
-
           @donation = Sponsorship.create(amount: (@res['amount'].to_f)/100,
           interest_line_id: cookies[:interest_line_id].to_i,
           channel: @res['channel'], 
