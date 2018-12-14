@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 gem 'jquery-cdn'
 gem 'rabl'
-
+gem 'rack-timeout'
 # Also add either `oj` or `yajl-ruby` as the JSON parser
 gem 'oj'
 gem 'clipboard-rails'
