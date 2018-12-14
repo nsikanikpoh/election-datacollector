@@ -112,18 +112,20 @@ end
           updated_at: Time.now)
         @donation.save 
   
-       @donator = User.find(@donation.donator_id)
-      @interest = InterestLine.find(@donation.interest_line_id)
-       render json: {
-      sponsorship: @donation, each_serializer: Api::V1::SponsorshipsSerializer, 
-      sponsor: @donator, each_serializer: Api::V1::UserSerializer,
-      interest_line: @interest, each_serializer: Api::V1::InterestLineSerializer,
-     } 
+      if @donation.save
+     # insert_to_crm(@donation)
+       
+      render json: @donation, each_serializer: Api::V1::SponsorshipsSerializer
 
-  end
-    
-  end
+      else    
+        format.json { render :json => @donation.errors, status: :unprocessable_entity}
+      end
+  else    
+        format.json { render :json => errors, status: :unprocessable_entity}
+      
+end
 
+      
   # PATCH/PUT /donations/1
   # PATCH/PUT /donations/1.json
 
