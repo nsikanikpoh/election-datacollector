@@ -107,6 +107,9 @@ def fundraiser_donate
       else    
         format.json { render :json => @donation.errors, status: :unprocessable_entity}
       end
+      else    
+        format.json { render :json => errors, status: :unprocessable_entity}
+      
     end
 end
 
@@ -193,11 +196,14 @@ def getType(user)
         @donator = User.find(@donation.donator_id)
       render json: {
    donation: @donation, each_serializer: Api::V1::DonationsSerializer, 
-    donator: @donator, each_serializer: Api::V1::UserSerializer
+    donator: @donator, each_serializer: Api::V1::UserSerializer,
    } 
-  else    
+     else    
         format.json { render :json => @donation.errors, status: :unprocessable_entity}
-  end
+    end
+  else    
+        format.json { render :json => errors, status: :unprocessable_entity}
+      
 end
 end
 
