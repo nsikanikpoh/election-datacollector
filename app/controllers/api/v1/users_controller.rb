@@ -218,18 +218,15 @@ def create
         blob = Base64.decode64(base64_string)
         image = MiniMagick::Image.read(blob)
         image.size 458763
-        image.width 640
-        image.height 480
-        image.dimensions [640, 480]
 
         # Save in other format
         image.format 'png'
         image.write 'image.png'
         user.update(image: image)
    end
-    user.update(user_params)
+    user.update(name: params[:user][:name], phone: params[:user][:phone], state:params[:user][:state], location: params[:user][:location])
  
-      if user.update(user_params)
+      if  user.update(name: params[:user][:name], phone: params[:user][:phone], state:params[:user][:state], location: params[:user][:location])
           render json: user,serializer: Api::V1::UserSerializer, :status => 201
        else
         render :json => user.errors, status: :unprocessable_entity 
