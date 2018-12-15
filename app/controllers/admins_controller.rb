@@ -8,7 +8,7 @@ class AdminsController < ApplicationController
     @users = Admin.all
   end
 
-  # GET /admins/1
+  # GET /
   # GET /admins/1.json
   def show
     @user = Admin.find(params[:id])
