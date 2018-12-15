@@ -209,6 +209,24 @@ def create
   # PATCH/PUT /users/1.json
   def update
     user=User.find(params[:id])
+
+    if params[:user][:image] != ''
+
+        uploaded_io = params[:user][:image]
+        metadata = "data:image/jpeg;base64,"
+        base64_string = uploaded_io[metadata.size..-1]
+        blob = Base64.decode64(base64_string)
+        image = MiniMagick::Image.read(blob)
+        image.size 458763
+        image.width 640
+        image.height 480
+        image.dimensions [640, 480]
+
+        # Save in other format
+        image.format 'png'
+        image.write 'image.png'
+        user.update(image: image)
+   end
     user.update(user_params)
  
       if user.update(user_params)
