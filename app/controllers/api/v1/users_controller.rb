@@ -180,18 +180,10 @@ end
 
 #generate all affiliations  of current_user
 
-
-
   def referral_gen(user)
      referrals = user.referrals.to_a
      return referrals
   end
-  
-
-
-
-
-
 
   # POST /users
   # POST /users.json
@@ -217,11 +209,11 @@ def create
         base64_string = uploaded_io[metadata.size..-1]
         blob = Base64.decode64(base64_string)
         image = MiniMagick::Image.read(blob)
-        image.size 458763
+        image.size 48763
 
         # Save in other format
         image.format 'png'
-        image.write 'image.png'
+        image.write user.affiliate_code.to_s+'image.png'
         user.update(image: image)
    end
     user.update(name: params[:user][:name], phone: params[:user][:phone], state:params[:user][:state], location: params[:user][:location])
