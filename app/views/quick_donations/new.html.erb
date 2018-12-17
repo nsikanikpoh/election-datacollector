@@ -1,9 +1,280 @@
 
-<% provide( :title, "Quick Donation") %>
+<!DOCTYPE html>
+<html>
 
-<div class="forms">
-					<h2 class="title1">New Donation to OneMilMap</h2>
-					<div class="form-grids row widget-shadow" data-example-id="basic-forms"> 	<div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
-<%= render 'form', quick_donation: @quick_donation %>
+<style>
+div{
+    display: block;
+    margin:0;
+    border:0;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    /*display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;*/
+    outline: 0;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.fade.in {
+    opacity: 1;
+}
+.paindonates_form{
+	text-align: center;
+	color: #999999;line-height: initial;
+}
+.paindonates_form input.invalid{
+box-shadow:0 0 2px 0 red;
+-moz-box-shadow:0 0 2px 0 red;
+-webkit-box-shadow:0 0 2px 0 red;
+}
+.modal .loading {
+    display: inline-block;
+    font-size: 20px;
+    margin: 0 10px;
+    vertical-align: middle;
+    visibility: hidden;
+}
+.modal-content {
+    border: medium none;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+.modal-backdrop.in {
+    opacity: 1;
+}
+.modal-backdrop {
+    background: rgba(28, 28, 28, 0.88) none repeat scroll 0 0;
+}
+.modal-open .modal{
+    overflow-x:hidden;
+    overflow-y:auto
+}
+.modal .modal-dialog .modal-content .popupdonation_content .paindonation_popup_form .form-group {
+    margin-bottom: 10px;
+}
+.modal .modal-dialog .modal-content .popupdonation_content .paindonation_popup_form .amount_wrapper {
+    margin: 0 0 20px;
+    padding: 0 0 15px;
+}
+.modal .popupdonation_title {
+    background: #df0a24 none repeat scroll 0 0;
+    color: #fff;
+    font-size: 28px;
+    padding: 30px 100px 30px 30px;
+    position: relative;
+}
+.modal .popupdonation_title h4 {
+    color: #fff;
+    font-weight: 700;
+    margin: 10px 0 0;
+}
+.modal .close_popup {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    height: 32px;
+    padding-top: 4px;
+    position: absolute;
+    right: 30px;
+    text-align: center;
+    top: 30px;
+    width: 33px;
+}
+.modal .close_popup:hover {
+    background: #fff none repeat scroll 0 0;
+    border-color: #fff;
+    color: #df0a24;
+}
+.modal .popupdonation_content {
+    background: #fff none repeat scroll 0 0;
+    padding: 20px 30px;
+    position: relative;
+}
+.paindonates_form .amount_wrapper .button {
+	text-align: center;
+}
+.donation_popup_form .amount_wrapper, .paindonation_popup_form .amount_wrapper {
+    border-bottom: 1px solid #dcdcdc;
+    margin: 0 0 30px;
+    padding: 0 0 30px;
+    position: relative;
+}
+.donation_popup_form .amount_wrapper p, .paindonation_popup_form .amount_wrapper . p {
+    color: #808080;
+    font-size: 13px;
+    margin: 0 0 8px;
+}
+.donation_popup_form .amount_wrapper input[type="radio"], .paindonation_popup_form .amount_wrapper input[type="radio"] {
+    display: none;
+}
+.donation_popup_form .amount_wrapper .button, .paindonation_popup_form .amount_wrapper .button {
+    cursor: pointer;
+    font-family: Georgia,Arial,sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    margin: 0 15px 0 0;
+}
+.donation_popup_form .amount_wrapper .form-control, .paindonation_popup_form .amount_wrapper .form-control {
+  display: inline-block;
+  font-size: 14px;
+  padding: 10px;
+  width: 150px;
+}
+/* button */
+.button, body .wpb_btn-danger, body .wpb_btn-danger:active {
+    background: #df0a24 none repeat scroll 0 0;
+    border: 1px solid #df0a24;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 10px 20px;
+    text-decoration: none !important;
+    text-shadow: none;
+    transition: all 0.3s linear 0s;
+    vertical-align: baseline;
+}
+.button.grey {
+    background: #e4e4e4 none repeat scroll 0 0;
+    border-color: #e4e4e4;
+    color: #8a8a8a;
+}
+.button.grey:hover {
+    background: #df0a24 none repeat scroll 0 0;
+    border-color: #df0a24;
+    color: #fff;
+}
+.button.black {
+    background: #4b4b4b none repeat scroll 0 0;
+    border-color: #4b4b4b;
+    color: #fff;
+}
+.button.black:hover {
+    background: #df0a24 none repeat scroll 0 0;
+    border-color: #df0a24;
+    color: #fff;
+}
+.button:hover, body .wpb_btn-danger:hover, .button:focus {
+    background: transparent none repeat scroll 0 0;
+    color: #df0a24;
+    text-shadow: none;
+}
+.button i {
+    font-size: 14px;
+    margin: 0 5px 0 -5px;
+}
+.button.bordered_1 {
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid #df0a24;
+    color: #df0a24;
+    padding: 10px 20px;
+}
+.button.bordered_1:hover, .button.bordered_2:hover {
+    background: #df0a24 none repeat scroll 0 0;
+    color: #fff;
+}
+</style>
+<div class="modal fade paindonates_form" id="paindonates_form0" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="popupdonation_title">
+                Donate				<div class="close_popup" data-dismiss="modal"></div>
+            </div>
+            <%= form_for(@quick_donation) do |f| %>
+            <div class="popupdonation_content">
+                <form id="paindonation_popup_form0" class="paindonation_popup_form">
+                    <div class="amount_wrapper">
+                        <p>How much would you like to donate?</p>
 
+             <%= f.radio_button :amount, 2000, required:"required", class:"active" %>
+             <%= f.label :amount, "2,000", class:"button button_donate" %>
+             
+    <%= f.radio_button :amount, 5000, required:"required",  class:"button bordered_1" %> 
 
+    <%= f.label :amount, "5,000", class:"button button_donate" %>
+ <%= f.radio_button :amount, 10000, required:"required",  class:"button bordered_1" %>
+
+ <%= f.label :amount, "10,000", class:"button bordered_1" %>
+
+                    <!--<input type="radio" id="amount20000" name="donor[amount]" value="20000" /><label for="amount20000" class="button bordered_1">N20,000</label>
+                    <input type="radio" id="amount30000" name="donor[amount]" value="30000" /><label for="amount30000" class="button bordered_1">N30,000</label>
+                    <input type="radio" id="amount50000" name="donor[amount]" value="50000" /><label for="amount50000" class="button bordered_1">N50,000</label>
+                    <input type="radio" id="amount100000" name="donor[amount]" value="100000" /><label for="amount100000" class="button bordered_1">N100,000</label>
+                    <input type="radio" id="amount200000" name="donor[amount]" value="200000" /><label for="amount200000" class="button bordered_1">N200,000</label>
+                    <input type="radio" id="amount300000" name="donor[amount]" value="300000" /><label for="amount300000" class="button bordered_1">N300,000</label>
+                    <input type="radio" id="amount500000" name="donor[amount]" value="500000" /><label for="amount500000" class="button bordered_1">N500,000</label>
+                    </br>
+                </br>
+                    <input type="radio" id="amount1000000" name="donor[amount]" value="1000000" /><label for="amount1000000" class="button bordered_1">N1,000,000</label>	
+                    <input type="radio" id="amount2000000" name="donor[amount]" value="2000000" /><label for="amount2000000" class="button bordered_1">N2,000,000</label>	-->	
+					<input type="text" class="custom-amount form-control" name="donor[custom_amount]" placeholder="Your amount (NGN)" />
+
+                    </div>
+                    <div class="row">
+                            <div class="form-group" align="center" >
+                                <label for="site_donor_full_name">Full Name * </label>
+                                <%= f.text_field :name, type:"text", required:"required", class:"form-control"%>
+            
+                            </div>
+                            <!--<div class="form-group" align="center">
+                                <label for="site_donor_last_name">Last name * </label>
+                                <input type="text" name="donor[last_name]" class="form-control" id="site_donor_last_name" value="" required />
+                            </div>-->
+                            <div class="form-group" align="center">
+                                <label for="site_donor_email">E-mail *    </label>
+                                 <%= f.email_field :email, type:"email", required:"required", class:"form-control" %>
+                            </div>
+                            <div class="form-group" align="center">
+                                <label for="site_donor_phone">Phone *   </label>
+                               <%= f.text_field :tel, type:"number", required:"required", class:"form-control" %>
+                            </div>
+                            <!--
+                            <div class="form-group">
+                                <label for="site_donor_address">Address</label>
+                                <textarea id="site_donor_address" class="form-control" name="donor[address]"></textarea>
+                            </div>-->
+                            <div class="form-group" align="center">
+                                <label for="site_donor_notes">Additional Note </label>
+                                <textarea id="site_donor_notes" class="form-control"  align="right" name="donor[notes]"></textarea>
+                            </div>
+                    </div>
+                    <!--<div class="row subscription">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-checkbox"><input type="checkbox" name="donor[sign_up]" value="1"> <span>Sign up for mailing list</span></label>
+                            </div>
+                        </div>
+                    </div>-->
+                </br>
+
+                    <div class="row action">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <%= f.submit "Donate", class:"button button_donate"%>
+                                <div class="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <% end %>
+            </div>
+        </div>
+	</div>
+</div>					
+</html>

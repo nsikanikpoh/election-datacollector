@@ -2,6 +2,7 @@ class QuickDonationsController < ApplicationController
   before_action :set_quick_donation, only: [:show, :edit, :update, :destroy]
    skip_before_action :authenticate_user!, only: [:new, :create, :show]
    layout 'application', only: [:index]
+   layout 'newquick', only: [:new]
   # GET /quick_donations
   # GET /quick_donations.json
   def index

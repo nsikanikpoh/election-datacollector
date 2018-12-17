@@ -17,9 +17,35 @@ class InterestLinesController < ApplicationController
     end
   end
 
+def getGender(user)
+    if user.interest_line.name == "Education"
+          return 100000000
+        elsif user.interest_line.name == "Health"
+          return 100000001
+        elsif user.interest_line.name == "Women's Right"
+          return 100000002
+          elsif user.interest_line.name == "Conflicts and Emergencies"
+          return 100000003
+          elsif user.interest_line.name == "Food and Agriculture"
+          return 100000004
+
+          elsif user.interest_line.name == "Governance"
+          return 100000001
+
+        end
+end
+
    def addinterest
     if current_user.patriot?
       current_user.update(interest_line_id: @interest_line.id)
+
+      sexint = getGender(current_user)
+        
+        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
+        client.authenticate(ENV['USER'], ENV['PASSWORD'])
+        
+        client.update('contact', current_user.crm_id, new_interestline: {type: "OptionSetValue", value: sexint})
+
       redirect_to root_path, notice: 'You have successfully choosen'+@interest_line.name+'as your Interest Line'
     else
       redirect_to root_path, notice: 'You must be a patriot to complete this action.'
