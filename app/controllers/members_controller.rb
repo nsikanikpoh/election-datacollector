@@ -227,10 +227,10 @@ if referrer_code.present?
         lname = namel[1]
 
           sexint = getGender(@user)
-          geoint = geo_zone(@user.state)
+          #geoint = geo_zone(@user.state)
+          geoint = 100000002
           typeint = 100000001
-      
-
+          
         client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
         client.authenticate(ENV['USER'], ENV['PASSWORD'])
    
