@@ -127,18 +127,18 @@ def geo_zone(state)
   south_south = ["Akwa Ibom","Bayelsa","Cross River","Delta","Edo","Rivers"]
   south_east = ["Abia","Anambra","Ebonyi","Enugu","Imo"]
   south_west = ["Ekiti","Lagos","Ogun","Ondo","Osun","Oyo",]
-       if north_central.include? state
+       if north_central.include?(state)
           return 100000000
-        elsif north_east.include? state
+        elsif north_east.include?(state)
           return 100000001
-        elsif north_west.include? state
+        elsif north_west.include?(state)
           return 100000002
-        elsif south_south.include? state
+        elsif south_south.include?(state)
           return 100000005
-        elsif south_west.include? state
+        elsif south_west.include?(state)
           return 100000004
 
-        elsif south_east.include? state
+        elsif south_east.include?(state)
           return 100000003
         end
 
