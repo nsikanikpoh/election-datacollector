@@ -263,6 +263,22 @@ else
       if @user.save
         code = @user.id + 24523009
         @user.update(affiliate_code: code)
+            namel =@user.name.split(' ')
+        fname = namel[0]
+        lname = namel[1]
+        sexint = getGender(@user)
+        geoint = geo_zone(@user.state)
+        typeint = 100000003
+
+        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
+        client.authenticate(ENV['USER'], ENV['PASSWORD'])
+   
+        res = client.create('contact', firstname: fname, lastname: lname, emailaddress1: @user.email, 
+          gendercode: {type: "OptionSetValue", value: sexint}, mobilephone: @user.phone, 
+          address1_stateorprovince: @user.state, new_geopoliticalzone: {type: "OptionSetValue", value: geoint}, new_supportertype: {type: "OptionSetValue", value: typeint})
+      
+        crmid = res.id
+        @user.update(crm_id: crmid)
         sign_in(@user)
         format.html { redirect_to root_path, notice: 'Ambassador Account was successfully created. Thank you!' }
         format.json { render :show, status: :created, location: @user }

@@ -227,9 +227,8 @@ if referrer_code.present?
         lname = namel[1]
 
           sexint = getGender(@user)
-          #geoint = geo_zone(@user.state)
-          geoint = 100000002
-          typeint = 100000001
+          geoint = geo_zone(@user.state)
+          typeint =100000001
           
         client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
         client.authenticate(ENV['USER'], ENV['PASSWORD'])
@@ -264,6 +263,7 @@ else
         lname = namel[1]
 
           sexint = getGender(@user)
+          geoint = geo_zone(@user.state)
           typeint = 100000001
       
 
@@ -272,7 +272,7 @@ else
    
         res = client.create('contact', firstname: fname, lastname: lname, emailaddress1: @user.email, 
           gendercode: {type: "OptionSetValue", value: sexint}, mobilephone: @user.phone, 
-          address1_stateorprovince: @user.state, new_supportertype: {type: "OptionSetValue", value: typeint})
+          address1_stateorprovince: @user.state, new_geopoliticalzone: {type: "OptionSetValue", value: geoint}, new_supportertype: {type: "OptionSetValue", value: typeint})
       
         crmid = res.id
         @user.update(crm_id: crmid)
