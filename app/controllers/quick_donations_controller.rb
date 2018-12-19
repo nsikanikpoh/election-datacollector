@@ -26,21 +26,26 @@ class QuickDonationsController < ApplicationController
   # POST /quick_donations
   # POST /quick_donations.json
   def create
-    cookies[:email] = quick_donation_params[:email]
-    cookies[:name] = quick_donation_params[:name]
-    cookies[:tel] = quick_donation_params[:tel]
+    if params[:amount].to_i == 0
+
+       redirect_to new_quick_donation_path, notice: "Sorry, you did not select an amount"
+
+    else
+    cookies[:email] = params[:email]
+    cookies[:name] = params[:name]
+    cookies[:tel] = params[:tel]
 
     ref = SecureRandom.hex
     cookies[:ref] = ref
-    namel = quick_donation_params[:name].split(' ')
+    namel = params[:name].split(' ')
     fname = namel[0]
     lname = namel[1]
     paystackObj = Paystack.new(ENV['PUBLIC_KEY_TEST'], ENV['SECRET_KEY_TEST'])
     transactions = PaystackTransactions.new(paystackObj)
     result = transactions.initializeTransaction(
     :reference => ref,
-    :amount => quick_donation_params[:amount].to_i*100,
-    :email => quick_donation_params[:email],
+    :amount => params[:amount].to_i*100,
+    :email => params[:email],
     :firstname => fname,
     :lastname => lname
     )
@@ -49,7 +54,7 @@ class QuickDonationsController < ApplicationController
 
     redirect_to auth_url
 
-
+ end
   end
 
   # PATCH/PUT /quick_donations/1
@@ -83,7 +88,5 @@ class QuickDonationsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def quick_donation_params
-      params.require(:quick_donation).permit(:name, :tel, :email, :amount)
-    end
+    
 end
