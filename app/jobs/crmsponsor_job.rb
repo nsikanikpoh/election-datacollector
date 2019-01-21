@@ -19,7 +19,7 @@ class CrmsponsorJob < ApplicationJob
         end
 end
 
-  def perform(donation)
+  def perform(donation, donator)
     # Do something later
          sexint = getGender(current_user)
         client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
@@ -31,7 +31,7 @@ end
           new_interestline: {type: "OptionSetValue", value: sexint})
 
           contacts = [ DynamicsCRM::XML::EntityReference.new("new_donation", crmid.id)]
-          client.associate("contact", donation.donator.crm_id, "new_contact_new_donation_Donator", contacts)
+          client.associate("contact", donator.crm_id, "new_contact_new_donation_Donator", contacts)
 
   end
 

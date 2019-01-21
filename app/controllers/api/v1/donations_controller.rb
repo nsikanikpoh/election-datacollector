@@ -99,7 +99,7 @@ def fundraiser_donate
       if @donation.save
 
        # insert_to_crm(@donation)
-        CrmdonateJob.set(wait: 20.seconds).perform_later(@donation)
+        CrmdonateJob.set(wait: 20.seconds).perform_later(@donation, user)
         
       render json: @donation, each_serializer: Api::V1::DonationsSerializer
       else    
@@ -191,7 +191,7 @@ def getType(user)
     @donation.save 
     if @donation.save
      # insert_to_crm(@donation)
-      CrmdonateJob.set(wait: 20.seconds).perform_later(@donation)
+      CrmdonateJob.set(wait: 20.seconds).perform_later(@donation, @current_user)
        
       render json: @donation, each_serializer: Api::V1::DonationsSerializer
      else    

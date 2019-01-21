@@ -120,7 +120,7 @@ end
                       created_at: Time.now,
                       updated_at: Time.now)
                 
-                CrmdonateJob.set(wait: 20.seconds).perform_later(donation)
+                CrmdonateJob.set(wait: 20.seconds).perform_later(donation, user)
 
             else
                   if cookies[:interest_line]
@@ -137,7 +137,7 @@ end
                     created_at: Time.now,
                     updated_at: Time.now)
                       insert_to_crm1(donation)
-                      CrmsponsorJob.set(wait: 20.seconds).perform_later(donation)
+                      CrmsponsorJob.set(wait: 20.seconds).perform_later(donation, current_user)
 
 
                        donation.save
@@ -165,7 +165,7 @@ end
                     expires_on: expires_on,
                     created_at: Time.now,
                     updated_at: Time.now)
-                     CrmdonateJob.set(wait: 20.seconds).perform_later(donation)
+                     CrmdonateJob.set(wait: 20.seconds).perform_later(donation, current_user)
 
                         if (@res['amount'].to_f)/100 >= 24000
                             if current_user.type == "Member" || current_user.type == "Champion" 

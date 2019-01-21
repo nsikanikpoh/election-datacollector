@@ -12,7 +12,7 @@ class CrmdonateJob < ApplicationJob
 
 end
 
-  def perform(donation)
+  def perform(donation, donator)
     # Do something later
       client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
         client.authenticate(ENV['USER'], ENV['PASSWORD'])
@@ -24,7 +24,7 @@ end
           new_donationtype: {type: "OptionSetValue", value: dtype})
 
           contacts = [ DynamicsCRM::XML::EntityReference.new("new_donation", crmid.id)]
-          client.associate("contact", donation.donator.crm_id, "new_contact_new_donation_Donator", contacts)
+          client.associate("contact", donator.crm_id, "new_contact_new_donation_Donator", contacts)
 
   end
 end
