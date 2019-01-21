@@ -238,7 +238,6 @@ GEM
       rake (>= 0.8.1)
     paystack (0.1.7)
       rest-client (~> 2.0)
-    pg (0.21.0)
     public_suffix (3.0.2)
     puma (3.11.4)
     rabl (0.13.1)
@@ -413,7 +412,6 @@ DEPENDENCIES
   omniauth-twitter
   passenger
   paystack
-  pg (~> 0.20)
   puma (~> 3.7)
   rabl
   rack-cors

@@ -48,13 +48,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'capistrano-rails'
-group :development, :test do
-  gem 'sqlite3'
-end
 
-group :production do
-  gem 'pg', '~> 0.20'
-end
+  gem 'sqlite3'
+
+
+
+  #gem 'pg', '~> 0.20'
+
 
 
 gem 'unicorn'
