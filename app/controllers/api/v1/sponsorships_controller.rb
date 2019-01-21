@@ -54,18 +54,7 @@ def sea
     @donation.save
     respond_to do |format|
       if @donation.save
-        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
-        client.authenticate(ENV['USER'], ENV['PASSWORD'])
-        #amount = BigDecimal.new(@donation.amount.to_i)
-
-          dtype = getType(@donation)
-          crmid = client.create('new_donation', new_donationmade: @donation.amount.to_i,
-          new_donatoremail: @donation.donator.email,
-          new_donationtype: {type: "OptionSetValue", value: dtype})
-
-          contacts = [ DynamicsCRM::XML::EntityReference.new("new_donation", crmid.id)]
-          client.associate("contact", @donation.donator.crm_id, "new_contact_new_donation_donator", contacts)
-
+        CrmsponsorJob.set(wait: 20.seconds).perform_later(donation)
         format.html { redirect_to @donation, notice: 'Donation was successfully made.' }
         format.json { render :show, status: :created, location: @donation }
       else
@@ -114,6 +103,7 @@ end
   
       if @donation.save
      # insert_to_crm(@donation)
+     CrmsponsorJob.set(wait: 20.seconds).perform_later(@donation)
        
       render json: @donation, each_serializer: Api::V1::SponsorshipsSerializer
 

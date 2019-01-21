@@ -65,7 +65,8 @@ def insert_to_crm1(donation)
           client.associate("contact", donation.donator.crm_id, "new_contact_new_donation_Donator", contacts)
 
 end
-  def insert_to_crm(donation)
+  
+def insert_to_crm(donation)
 
         client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
         client.authenticate(ENV['USER'], ENV['PASSWORD'])
@@ -118,7 +119,8 @@ end
                       expires_on: expires_on,
                       created_at: Time.now,
                       updated_at: Time.now)
-                insert_to_crm(donation)
+                
+                CrmdonateJob.set(wait: 20.seconds).perform_later(donation)
 
             else
                   if cookies[:interest_line]
@@ -135,6 +137,7 @@ end
                     created_at: Time.now,
                     updated_at: Time.now)
                       insert_to_crm1(donation)
+                      CrmsponsorJob.set(wait: 20.seconds).perform_later(donation)
 
 
                        donation.save
@@ -162,7 +165,7 @@ end
                     expires_on: expires_on,
                     created_at: Time.now,
                     updated_at: Time.now)
-                     insert_to_crm(donation)
+                     CrmdonateJob.set(wait: 20.seconds).perform_later(donation)
 
                         if (@res['amount'].to_f)/100 >= 24000
                             if current_user.type == "Member" || current_user.type == "Champion" 

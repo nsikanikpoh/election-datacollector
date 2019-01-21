@@ -62,23 +62,7 @@ def create
       if user.save
         code = user.id + 24523009
         user.update(affiliate_code: code)
-          namel =user.name.split(' ')
-        fname = namel[0]
-        lname = namel[1]
-
-          sexint = getGender(user)
-          geoint = geo_zone(user.state)
-          typeint = 100000001
-      
-
-        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
-        client.authenticate(ENV['USER'], ENV['PASSWORD'])
-   
-      res = client.create('contact', firstname: fname, lastname: lname, emailaddress1: user.email, 
-          gendercode: {type: "OptionSetValue", value: sexint}, mobilephone: user.phone, 
-          address1_stateorprovince: user.state, new_geopoliticalzone: {type: "OptionSetValue", value: geoint}, new_supportertype: {type: "OptionSetValue", value: typeint})
-        crmid = res.id
-        user.update(crm_id: crmid)
+        MemberupJob.set(wait: 20.seconds).perform_later(user)
         sign_in(user)
         render json: user,serializer: Api::V1::MembersSerializer, :status => 201
        else

@@ -207,14 +207,7 @@ if referrer_code.present?
     @affiliate = User.find_by_affiliate_code(referrer_code)
      @user = Member.new(user_params)
      @user.referrer_code = referrer_code
-    # subscription = PaymentSystem.get_subscription(referrer.subscription_id)
-     #if subscription.trial_end > Time.now.to_i
-     #  subscription.trial_end = (Time.at(subscription.trial_end) + 90.days).to_i
-     #else
-     #  subscription.trial_end = (Time.now + 90.days).to_i
-     #end
-    # subscription.save
-    # @user.referred_by = referred_by.to_i
+   
     @user.save
      respond_to do |format|
       if @user.save
@@ -222,23 +215,7 @@ if referrer_code.present?
         @user.update(affiliate_code: code)
         create_affiliation(@affiliate, @user)
 
-         namel =@user.name.split(' ')
-        fname = namel[0]
-        lname = namel[1]
-
-          sexint = getGender(@user)
-          geoint = geo_zone(@user.state)
-          typeint =100000001
-          
-        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
-        client.authenticate(ENV['USER'], ENV['PASSWORD'])
-   
-        res = client.create('contact', firstname: fname, lastname: lname, emailaddress1: @user.email, 
-          gendercode: {type: "OptionSetValue", value: sexint}, mobilephone: @user.phone, 
-          address1_stateorprovince: @user.state, new_geopoliticalzone: {type: "OptionSetValue", value: geoint}, new_supportertype: {type: "OptionSetValue", value: typeint})
-      
-        crmid = res.id
-        @user.update(crm_id: crmid)
+        MemberupJob.set(wait: 20.seconds).perform_later(@user)
 
         sign_in(@user)
         format.html { redirect_to root_path, notice: 'Supporter Account was successfully created. Thank you!' }
@@ -258,24 +235,7 @@ else
         code = @user.id + 24523009
         @user.update(affiliate_code: code)
 
-          namel =@user.name.split(' ')
-        fname = namel[0]
-        lname = namel[1]
-
-          sexint = getGender(@user)
-          geoint = geo_zone(@user.state)
-          typeint = 100000001
-      
-
-        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
-        client.authenticate(ENV['USER'], ENV['PASSWORD'])
-   
-        res = client.create('contact', firstname: fname, lastname: lname, emailaddress1: @user.email, 
-          gendercode: {type: "OptionSetValue", value: sexint}, mobilephone: @user.phone, 
-          address1_stateorprovince: @user.state, new_geopoliticalzone: {type: "OptionSetValue", value: geoint}, new_supportertype: {type: "OptionSetValue", value: typeint})
-      
-        crmid = res.id
-        @user.update(crm_id: crmid)
+          MemberupJob.set(wait: 20.seconds).perform_later(@user)
 
         sign_in(@user)
         format.html { redirect_to root_path, notice: 'Supporter Account was successfully created. Thank you!' }

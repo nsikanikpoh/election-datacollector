@@ -198,6 +198,7 @@ if referrer_code.present?
         code = @user.id + 24523009
         @user.update(affiliate_code: code)
         create_affiliation(@affiliate, @user)
+        PatupJob.set(wait: 20.seconds).perform_later(@user)
         sign_in(@user)
         format.html { redirect_to root_path, notice: 'Patriot Account was successfully created. Thank you!' }
         format.json { render :show, status: :created, location: @user }
@@ -217,6 +218,7 @@ else
       if @user.save
         code = @user.id + 24523009
         @user.update(affiliate_code: code)
+        PatupJob.set(wait: 20.seconds).perform_later(@user)
         sign_in(@user)
         format.html { redirect_to root_path, notice: 'Patriot Account was successfully created. Thank you!' }
         format.json { render :show, status: :created, location: @user }

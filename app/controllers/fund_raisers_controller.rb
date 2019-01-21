@@ -167,24 +167,7 @@ end
         @user.update(affiliate_code: code)
         create_affiliation(@affiliate, @user)
 
-         namel =@user.name.split(' ')
-        fname = namel[0]
-        lname = namel[1]
-
-          sexint = getGender(@user)
-          geoint = geo_zone(@user.state)
-          typeint = 100000004
-          
-        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
-        client.authenticate(ENV['USER'], ENV['PASSWORD'])
-   
-        res = client.create('contact', firstname: fname, lastname: lname, emailaddress1: @user.email, 
-          gendercode: {type: "OptionSetValue", value: sexint}, mobilephone: @user.phone, 
-          address1_stateorprovince: @user.state, new_geopoliticalzone: {type: "OptionSetValue", value: geoint}, new_supportertype: {type: "OptionSetValue", value: typeint})
-      
-        crmid = res.id
-        @user.update(crm_id: crmid)
-
+        FundupJob.set(wait: 20.seconds).perform_later(@user)
         sign_in(@user)
         format.html { redirect_to root_path, notice: 'Fund Raiser Account was successfully created. Thank you!' }
         format.json { render :show, status: :created, location: @user }
@@ -206,23 +189,7 @@ else
         @user.update(affiliate_code: code)
          create_affiliation(@affiliate, @user)
 
-         namel =@user.name.split(' ')
-        fname = namel[0]
-        lname = namel[1]
-
-          sexint = getGender(user)
-          typeint = 100000004
-        
-
-        client = DynamicsCRM::Client.new({organization_name: ENV['ORG_NAME']})
-        client.authenticate(ENV['USER'], ENV['PASSWORD'])
-   
-        res = client.create('contact', firstname: fname, lastname: lname, emailaddress1: user.email, 
-          gendercode: {type: "OptionSetValue", value: sexint}, mobilephone: user.phone, 
-          address1_stateorprovince: user.state, new_supportertype: {type: "OptionSetValue", value: typeint})
-      
-        crmid = res.id
-        @user.update(crm_id: crmid)
+        FundupJob.set(wait: 20.seconds).perform_later(@user)
         
         sign_in(@user)
         format.html { redirect_to root_path, notice: 'Fund Raiser Account was successfully created. Thank you!' }
