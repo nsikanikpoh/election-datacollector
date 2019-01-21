@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/local/rvm/rubies/ruby-2.4.3/bin ruby
 VENDOR_PATH = File.expand_path('..', __dir__)
 Dir.chdir(VENDOR_PATH) do
   begin
