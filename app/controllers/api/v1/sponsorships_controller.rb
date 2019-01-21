@@ -103,7 +103,7 @@ end
   
       if @donation.save
      # insert_to_crm(@donation)
-     CrmsponsorJob.set(wait: 20.seconds).perform_later(@donation, @current_user)
+     CrmsponsorJob.set(wait: 20.seconds).perform_later(@donation, @current_user.crm_id)
        
       render json: @donation, each_serializer: Api::V1::SponsorshipsSerializer
 
