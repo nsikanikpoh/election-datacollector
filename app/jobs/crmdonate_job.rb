@@ -1,5 +1,16 @@
 class CrmdonateJob < ApplicationJob
   queue_as :default
+  def getType(user)
+      if user.line == "monthly"
+          return 100000000
+      elsif user.line == "quarterly"
+          return 100000001
+
+      elsif user.line == "yearly"
+          return 100000002
+      end
+
+end
 
   def perform(donation)
     # Do something later
