@@ -210,6 +210,7 @@ GEM
     passenger (5.3.7)
       rack
       rake (>= 0.8.1)
+    pg (0.21.0)
     public_suffix (3.0.2)
     puma (3.11.4)
     rabl (0.13.1)
@@ -372,6 +373,7 @@ DEPENDENCIES
   omniauth-linkedin
   omniauth-twitter
   passenger
+  pg (~> 0.20)
   puma (~> 3.7)
   rabl
   rack-cors
