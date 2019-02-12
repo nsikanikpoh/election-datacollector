@@ -3,10 +3,9 @@
 //= require fusioncharts/fusioncharts
 //= require fusioncharts/fusioncharts.charts
 //= require fusioncharts/themes/fusioncharts.theme.fint
-//= require ckeditor/init
-//= require cocoon
-//= require clipboard
-//= require social-share-button
+
+
+
 //= require bootstrap
 //= require jquery3
 //= require jquery_ujs
