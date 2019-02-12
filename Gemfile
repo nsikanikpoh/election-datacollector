@@ -56,11 +56,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'capistrano-rails'
 
-  gem 'sqlite3'
+  gem 'sqlite3',  group: :development
 
 
 
-  #gem 'pg', '~> 0.20'
+  gem 'pg', '~> 0.20',  group: :production 
 
 
 

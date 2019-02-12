@@ -1,2 +1,0 @@
-class QuickDonation < ApplicationRecord
-end
