@@ -1,0 +1,36 @@
+
+<% provide( :title, "Edit Polling Unit") %>
+
+
+<%if current_user.admin?%>
+<div class="row">
+  <div class="col-md-12">
+  <div class="x_panel" style="">
+      <div class="x_title">
+
+
+<h1>Editing Polling Unit</h1>
+<small>this page is available to logged on users only</small>
+</div>
+<br>
+<br>
+<br>
+</div>
+</div>
+</div>
+
+<%= render 'form', polling_unit: @polling_unit %>
+<br>
+<br>
+<br>
+ <%= link_to "Cancel", root_url,class:"btn btn-danger"%>
+ <%= link_to "Back", :back, class:"btn btn-warning"%>
+
+<%= link_to 'Polling Repo', polling_units_path, class:"btn btn-success"  %>
+ <%else%>
+<h2>Unauthorized access!</h2>
+    <p>You are not authorised to view this page.</p>
+  <%end%>
+</div>
+</div>
+</div>

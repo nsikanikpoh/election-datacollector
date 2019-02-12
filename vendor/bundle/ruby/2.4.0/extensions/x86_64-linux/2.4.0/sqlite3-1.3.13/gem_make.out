@@ -1,5 +1,5 @@
-current directory: /home/ns_sly/Desktop/workspace/onemilmap/vendor/bundle/ruby/2.4.0/gems/sqlite3-1.3.13/ext/sqlite3
-/usr/bin/ruby2.4 -r ./siteconf20181115-28258-1mjcg8j.rb extconf.rb
+current directory: /home/ns_sly/Desktop/workspace/eagleEye/web/vendor/bundle/ruby/2.4.0/gems/sqlite3-1.3.13/ext/sqlite3
+/usr/bin/ruby2.4 -r ./siteconf20190208-11001-ckius8.rb extconf.rb
 /usr/lib/ruby/2.4.0/mkmf.rb:1551: warning: Insecure world writable dir /opt in PATH, mode 040777
 checking for sqlite3.h... yes
 checking for pthread_create() in -lpthread... yes
@@ -17,10 +17,10 @@ checking for sqlite3_int64 in sqlite3.h... yes
 checking for sqlite3_uint64 in sqlite3.h... yes
 creating Makefile
 
-current directory: /home/ns_sly/Desktop/workspace/onemilmap/vendor/bundle/ruby/2.4.0/gems/sqlite3-1.3.13/ext/sqlite3
+current directory: /home/ns_sly/Desktop/workspace/eagleEye/web/vendor/bundle/ruby/2.4.0/gems/sqlite3-1.3.13/ext/sqlite3
 make "DESTDIR=" clean
 
-current directory: /home/ns_sly/Desktop/workspace/onemilmap/vendor/bundle/ruby/2.4.0/gems/sqlite3-1.3.13/ext/sqlite3
+current directory: /home/ns_sly/Desktop/workspace/eagleEye/web/vendor/bundle/ruby/2.4.0/gems/sqlite3-1.3.13/ext/sqlite3
 make "DESTDIR="
 compiling backup.c
 compiling database.c
@@ -29,6 +29,6 @@ compiling sqlite3.c
 compiling statement.c
 linking shared-object sqlite3/sqlite3_native.so
 
-current directory: /home/ns_sly/Desktop/workspace/onemilmap/vendor/bundle/ruby/2.4.0/gems/sqlite3-1.3.13/ext/sqlite3
+current directory: /home/ns_sly/Desktop/workspace/eagleEye/web/vendor/bundle/ruby/2.4.0/gems/sqlite3-1.3.13/ext/sqlite3
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 sqlite3_native.so ./.gem.20181115-28258-7unyo9/sqlite3
+/usr/bin/install -c -m 0755 sqlite3_native.so ./.gem.20190208-11001-1uv8ibm/sqlite3

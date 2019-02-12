@@ -1,0 +1,226 @@
+
+<% provide( :title, "LGA Governorship") %>
+
+
+      <div class="col_3">
+      <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-gift user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@reports.count%></strong></h5>
+                      <span>Reports</span>
+                    </div>
+                </div>
+          </div>
+
+             <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-money user2 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@pdp_votes%></strong></h5>
+                      <span>PDP Votes</span>
+                    </div>
+                </div>
+          </div>
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-edit icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@apc_votes%></strong></h5>
+                      <span>APC Votes</span>
+                    </div>
+                </div>
+          </div>
+
+   
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-laptop user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@apc_votes%></strong></h5>
+                      <span>APGA Votes</span>
+                    </div>
+                </div>
+          </div>
+       
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-adjust icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@prp_votes%></strong></h5>
+                      <span>PRP Votes</span>
+                    </div>
+                </div>
+           </div>
+          <div class="col-md-3 widget">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-users icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@lab_votes %></strong></h5>
+                      <span>Labour Party Votes</span>
+                    </div>
+                </div>
+           </div>
+
+           <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-dollar user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@ypp_votes%></strong></h5>
+                      <span>YPP Votes</span>
+                    </div>
+                </div>
+          </div>
+
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-dollar user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@council_wards.count%></strong></h5>
+                      <span>Council Wards</span>
+                    </div>
+                </div>
+          </div>
+
+               <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-group icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@polling_units.count%></strong></h5>
+                      <span>Polling Units</span>
+                    </div>
+                </div>
+           </div>
+          
+         
+          <div class="clearfix"> </div>
+    </div>
+    <br/>
+   <div class="clearfix"> </div>
+
+  
+      
+          <div class="clearfix"> </div>
+        </div>
+
+   <div class="charts">
+          
+          
+          <div class="charts-grids widget states-mdl">
+            <div class="card-header">
+              <h3>Governorship Votes Visualisation for <strong><%=@lga%></strong> LGA</h3>
+            </div>
+            <div id="chartContainer" class="demo-placeholder"><%= @chart.render() %></div>
+   </div>
+          </div>
+      
+          <div class="clearfix"> </div>
+        </div>
+
+          <div class="charts">
+          
+          
+          <div class="charts-grids widget states-mdl">
+            <div class="card-header">
+              <h3>Sort Votes for Governorship Election by L.G.A</h3>
+            </div>
+            
+
+
+<style>
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 3.0em;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
+<br/>
+<br/>
+<div class="dropdown">
+  <button class="dropbtn">Pick an LGA</button>
+  <div class="dropdown-content">
+    <a href="/governorship_elections_by_lga?lga=Ado">Ado</a>
+    <a href="/governorship_elections_by_lga?lga=Agatu">Agatu</a>
+    <a href="/governorship_elections_by_lga?lga=Apa">Apa</a>
+
+
+ <a href="/governorship_elections_by_lga?lga=Buruku">Buruku</a>
+  <a href="/governorship_elections_by_lga?lga=Gboko">Gboko</a>
+   <a href="/governorship_elections_by_lga?lga=Guma">Guma</a>
+    <a href="/governorship_elections_by_lga?lga=Giver West">Giver West</a>
+     <a href="/governorship_elections_by_lga?lga=Katsina-Ala">Katsina-Ala</a>
+      <a href="/governorship_elections_by_lga?lga=Konshisha">Konshisha</a>
+       <a href="/governorship_elections_by_lga?lga=Kwande">Kwande</a>
+        <a href="/governorship_elections_by_lga?lga=Logo">Logo</a>
+         <a href="/governorship_elections_by_lga?lga=Makurdi">Makurdi</a>
+          <a href="/governorship_elections_by_lga?lga=Obi">Obi</a>
+           <a href="/governorship_elections_by_lga?lga=Ogbadibo">Ogbadibo</a>
+            <a href="/governorship_elections_by_lga?lga=Oju">Oju</a>
+            <a href="/governorship_elections_by_lga?lga=Okpokwu">Okpokwu</a>
+             <a href="/governorship_elections_by_lga?lga=Ohimini">Ohimini</a>
+
+              <a href="/governorship_elections_by_lga?lga=Otukpo">Otukpo</a>
+               <a href="/governorship_elections_by_lga?lga=Tarka">Tarka</a>
+                <a href="/governorship_elections_by_lga?lga=Ukum">Ukum</a>
+                 <a href="/governorship_elections_by_lga?lga=Ushongo">Ushongo</a>
+
+                   <a href="/governorship_elections_by_lga?lga=Vandeikya">Vandeikya</a>
+
+
+  </div>
+</div>
+
+
+   </div>
+          </div>
+      
+          <div class="clearfix"> </div>
+        </div>
+
+<br/>
+
+<br/>
+
+<br/>
+

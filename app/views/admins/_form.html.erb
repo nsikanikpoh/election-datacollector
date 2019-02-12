@@ -1,127 +1,83 @@
-<%= form_with(model: admin, local: true, html: { multipart: true }) do |form| %>
-  <% if admin.errors.any? %>
+<div class="sign-up-row widget-shadow">
+<%= form_for(@user, html: { multipart: true }) do |form| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% admin.errors.full_messages.each do |message| %>
+      <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+<form>
 
- <div class="row">
-
-
-
-  <div class="col-md-9 col-xs-12">
-    <div class="x_panel">
-      <div class="x_title">
-        <h2>New Admin Form</h2>
-        <ul class="nav navbar-right panel_toolbox">
-         
-        
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x_content">
-        <br />
-        <form class="form-horizontal form-label-left input_mask">
-
-  <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-            <%= form.label :title%>
-            <%= form.select :title, ["Mr","Mrs","Miss","Master"], class:"form-control has-feedback-left", placeholder:"Title"%>
+<div class="sign-u">
             
+        <%= form.text_field :first_name, required:"required", placeholder:"First Name" %>
+            <div class="clearfix"> </div>
           </div>
 
-
-
-          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+   <div class="sign-u">
             
-
-          <%= form.label :name, "Name" %>
-        <%= form.text_field :name, id: :admin_name, class:"form-control", placeholder:"Full Name" %>
-            
-            <span class="fa fa-admin form-control-feedback right" aria-hidden="true"></span>
+        <%= form.text_field :last_name, id: :user_name, required:"required", placeholder:"Last Name" %>
+            <div class="clearfix"> </div>
           </div>
+         <div class="sign-u">
 
-          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-            
-    <%= form.label :email, "Email" %>
-    <%= form.email_field :email, autofocus: true, autocomplete: "email",  class:"form-control has-feedback-left", placeholder:"Email"%>
-  <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+    <%= form.email_field :email, autofocus: true, autocomplete: "email",  placeholder:"Email", required:"required"%>
+    <div class="clearfix"> </div>
           </div>
-
-
-          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+<div class="sign-u">
             
-                <%= form.label :phone, "Phone"%>
-              <%= form.text_field :phone, id: :admin_phone, class:"form-control", placeholder:"Phone" %>
-
-            <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+              <%= form.text_field :phone, id: :user_phone, placeholder:"Phone", required:"required" %>
+<div class="clearfix"> </div>
           </div>
-
-          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-            
-    <%= form.label :password, "Password" %>
+ <div class="sign-u">
     
-    <%= form.password_field :password, autocomplete: "off",  class:"form-control has-feedback-left", placeholder:"Password"%>
-  <span class="fa fa-briefcase form-control-feedback left" aria-hidden="true"></span>
+    <%= form.password_field :password, autocomplete: "off", placeholder:"Password", required:"required"%>
+    <div class="clearfix"> </div>
           </div>
-
-
-          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+ <div class="sign-u">
             
-                <%= form.label :password_confirmation , "Confirm Password"%>
-              <%= form.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder:"Confirm Password" %>
-
-            <span class="fa fa-briefcase form-control-feedback right" aria-hidden="true"></span>
+              <%= form.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirm Password", required:"required" %>
+<div class="clearfix"> </div>
           </div>
- <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+<div class="sign-u">
+  <div class="sign-up1">
             <%= form.label :gender%>
-            <%= form.select :gender, ["Male","Female"], class:"form-control has-feedback-left", placeholder:"Title"%>
+            </div>
+            <div class="sign-up2">
+            <%= form.select :gender, ["Male","Female"], placeholder:"Title", required:"required"%>
             
-            
+            </div>
+         <div class="clearfix"> </div>
           </div>
 
 
-
-   <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+<div class="sign-u">
             
-    <%= form.label :address, "Address" %>
     
-    <%= form.text_field :address, id: :admin_address,  class:"form-control has-feedback-left", placeholder:"Address"%>
-  <span class="fa fa-edit form-control-feedback left" aria-hidden="true"></span>
+    <%= form.text_field :address, id: :user_address, placeholder:"Address", required:"required"%>
+    <div class="clearfix"> </div>
           </div>
-
-
-   <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-            
+  <div class="sign-u">
+            <div class="sign-up1">
     <%= form.label :state, "State" %>
-    
-    <%= form.select :state, ["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta", "Ebonyi","Edo","Ekiti","Enugu","FCT","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nassarawa","Niger","Ogun","Ondo","Osun","Oyo State","Plateau","River State","Sokoto","Taraba","Yobe","Zamfara"], class:"form-control has-feedback-left", placeholder:"Title"%>
-          </div>
-
-
-
-
-
-          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-            
-                <%= form.label :location , "Location"%>
-              <%= form.text_field :location, id: :admin_city , class:"form-control", placeholder:"City" %>
-
-            <span class="fa fa-briefcase form-control-feedback right" aria-hidden="true"></span>
-          </div>
-
-<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
- <div class="profile-admintitle">
-          <div class="profile-admintitle-name">
-          <div class="profile-adminpic">
+    </div>
+   
+<div class="sign-u">
+ <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+          <div class="profile-userpic">
+           <div class="sign-up1">
    <%= form.label :image, "Profile Pic" %>
- 
-   <%= image_tag(@admin.image_url) if @admin.image? %>
+ </div>
+ <span class="prfil-img">
+   <%= image_tag @user.image_url,  width: 60, height: 50  if @user.image? %>
+   <span class="prfil-img">
+   <div class="sign-up2">
     <%= form.file_field :image, autofocus: true %>
    <%= form.hidden_field :image_cache %>
   
@@ -133,18 +89,23 @@
   </div>
 
           </div>
+          <div class="clearfix"> </div>
+          </div>
 
           
-          <div class="form-group">
-            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-               <%= form.submit "Sign up", class:"btn btn-success"%>
-       
+          <div class="sub_home">
+               <%= form.submit "Sign up", class:"btn btn-success",style:"color:#fff; font-weight:bold;"%>
+       <div class="clearfix"> </div>
+          </div>
 
 
 <% end %>
 <br>
 <br>
 <br>
+
+
+<%=link_to "already have an account sign in", new_session_path(User), class:"btn btn-info",style:"color:#fff; font-weight:bold;"%>
 
        
             </div>

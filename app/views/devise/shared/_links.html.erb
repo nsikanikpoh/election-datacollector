@@ -22,16 +22,3 @@
 <% end -%>
 
 <br/>
-<div class="signin-container">
-  <h2 style="color:#fff;">Sign in with</h2>
-
-  <%- if devise_mapping.omniauthable? %>
-    <ul class="image-list signin-icons">
-      <%- resource_class.omniauth_providers.each do |provider| %>
-        <span><%= link_to omniauth_authorize_path(resource_name, provider), :title => "Sign in with #{provider.to_s.titleize}" do %>
-          <%= image_tag "oauth_#{provider}.png", width: 50, height: 50, :alt => "Sign in with #{provider.to_s.titleize}" %><% end -%>
-        </span>
-      <% end %>
-    </ul>
-  <% end -%>
-</div>

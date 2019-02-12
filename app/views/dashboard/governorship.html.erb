@@ -1,0 +1,125 @@
+
+<% provide( :title, "Governorship") %>
+
+
+      <div class="col_3">
+      <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-gift user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@reports.count%></strong></h5>
+                      <span>Reports</span>
+                    </div>
+                </div>
+          </div>
+
+             <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-money user2 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@pdp_votes%></strong></h5>
+                      <span>PDP Votes</span>
+                    </div>
+                </div>
+          </div>
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-edit icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@apc_votes%></strong></h5>
+                      <span>APC Votes</span>
+                    </div>
+                </div>
+          </div>
+
+   
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-laptop user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@apc_votes%></strong></h5>
+                      <span>APGA Votes</span>
+                    </div>
+                </div>
+          </div>
+       
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-adjust icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@prp_votes%></strong></h5>
+                      <span>PRP Votes</span>
+                    </div>
+                </div>
+           </div>
+          <div class="col-md-3 widget">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-users icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@lab_votes %></strong></h5>
+                      <span>Labour Party Votes</span>
+                    </div>
+                </div>
+           </div>
+
+           <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-dollar user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@ypp_votes%></strong></h5>
+                      <span>YPP Votes</span>
+                    </div>
+                </div>
+          </div>
+
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-dollar user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@council_wards.count%></strong></h5>
+                      <span>Council Wards</span>
+                    </div>
+                </div>
+          </div>
+
+               <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-group icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@polling_units.count%></strong></h5>
+                      <span>Polling Units</span>
+                    </div>
+                </div>
+           </div>
+          
+         
+          <div class="clearfix"> </div>
+    </div>
+    <br/>
+   <div class="clearfix"> </div>
+
+  
+      
+          <div class="clearfix"> </div>
+        </div>
+
+   <div class="charts">
+          
+          
+          <div class="charts-grids widget states-mdl">
+            <div class="card-header">
+              <h3>Governorship Votes Visualisation</h3>
+            </div>
+            <div id="chartContainer" class="demo-placeholder"><%= @chart.render() %></div>
+   </div>
+          </div>
+      
+          <div class="clearfix"> </div>
+        </div>
+
+<br/>
+
+<br/>
+
+<br/>
+

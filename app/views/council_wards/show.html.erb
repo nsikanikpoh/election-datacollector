@@ -1,0 +1,76 @@
+<% provide( :title, @council_ward.title) %>
+
+
+<%if current_user%>
+ <h2 class="title1" style="background-color:#edeff2;height: 50px; font-size:40px; color:orange;">  <%= @council_ward.title %></h2>
+          <div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
+</div>
+      <p>L>G.A: <%= @council_ward.lga %></p>
+<div class="col-md-12 panel-grids">
+<div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title"> Reports under  <%= @council_ward.title %></h3> </div> <div class="panel-body">
+
+<small>this page is available to logged in users only</small>
+</div>
+<br>
+<br>
+<br>
+  <center><strong><h2 style="color:orange; font-size:22px">Ward</h2></strong></center>
+  <p class="lead" style="font-size:16px">
+  <%= @council_ward.title %>
+</p>
+
+<% if @council_ward.reports.any? %>
+<p class="lead" style="color:orange;">Reports from this ward</p>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Election Type</th>
+     
+      <th>L.G.A</th>
+  
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @council_ward.reports.each do |company| %>
+      <tr>
+        <td><%= company.election_type %>
+
+        </td>
+       
+<td><%= company.lga %></td>
+
+        <td><%= link_to 'View Report', company , class:"btn btn-info btn-xs"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+  
+
+<%else%>
+
+<p style="font-size:16px; color:red;">No Reports under this Ward Yet!</p>
+<%end%>
+
+
+  <%else%>
+    <h2>Unauthoried access!</h2>
+    <p>You are not authorised to view this page.</p>
+  <%end%>
+
+
+<%= link_to 'Edit', edit_council_ward_path(@council_ward), class:"btn btn-success" %> 
+  <%= link_to 'Dashboard', root_path, class:"btn btn-info" %> | <%= link_to "Back", :back, class:"btn btn-warning"%>
+
+
+
+
+
+
+
+
+
+

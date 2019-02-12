@@ -28,22 +28,25 @@
 
           </div>
 
-  <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-            <%= form.label :title%>
-            <%= form.select :title, ["Mr","Mrs","Miss","Master"], class:"form-control has-feedback-left", placeholder:"Title"%>
+    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
             
-          </div>
 
+          <%= form.label :first_name, "First Name" %>
+        <%= form.text_field :first_name, id: :user_name, class:"form-control", placeholder:"First Name" %>
+            
+            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+          </div>
 
 
           <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-            <%= form.label :name, "Name"%>
-            <%= form.text_field :name, id: :user_name, class:"form-control has-feedback-left", placeholder:"Full Name"%>
             
-            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+
+          <%= form.label :last_name, "Last Name" %>
+        <%= form.text_field :last_name, id: :user_name, class:"form-control", placeholder:"Last Name" %>
+            
+            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
           </div>
 
-        
 
           <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
             
@@ -104,28 +107,6 @@
           </div>
 
 
-   <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-            
-    <%= form.label :state, "State" %>
-    
-    <%= form.select :state, ["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta", "Ebonyi","Edo","Ekiti","Enugu","FCT","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nassarawa","Niger","Ogun","Ondo","Osun","Oyo State","Plateau","River State","Sokoto","Taraba","Yobe","Zamfara"], class:"form-control has-feedback-left", placeholder:"Title"%>
-          </div>
-
-
-
-
-
-          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-            
-                <%= form.label :location , "Location"%>
-              <%= form.text_field :location, id: :user_city , class:"form-control", placeholder:"City" %>
-
-            <span class="fa fa-briefcase form-control-feedback right" aria-hidden="true"></span>
-          </div>
-
-
-
-          
           <div class="form-group">
             <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                <%= form.submit "Update My Account", class:"btn btn-success"%>

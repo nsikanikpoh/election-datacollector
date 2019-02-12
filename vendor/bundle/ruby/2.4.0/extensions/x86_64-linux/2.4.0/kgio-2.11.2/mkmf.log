@@ -93,8 +93,8 @@ checked program was:
 /* end */
 
 "gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.4.0 -I/usr/include/ruby-2.4.0/ruby/backward -I/usr/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2   -D_GNU_SOURCE -DPOSIX_C_SOURCE=1-D_POSIX_C_SOURCE=200112L -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -L/build/ruby2.4-fBt1LG/ruby2.4-2.4.3/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    -lrt  -lruby-2.4 -lnsl -lrt  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
-/tmp/cco9TxCC.o: In function `t':
-/home/ns_sly/Desktop/workspace/onemilmap/vendor/bundle/ruby/2.4.0/gems/kgio-2.11.2/ext/kgio/conftest.c:14: undefined reference to `t_open'
+/tmp/ccTCGDRJ.o: In function `t':
+/home/ns_sly/Desktop/workspace/eagleEye/web/vendor/bundle/ruby/2.4.0/gems/kgio-2.11.2/ext/kgio/conftest.c:14: undefined reference to `t_open'
 collect2: error: ld returned 1 exit status
 checked program was:
 /* begin */
@@ -703,8 +703,8 @@ checked program was:
 /* end */
 
 "gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.4.0 -I/usr/include/ruby-2.4.0/ruby/backward -I/usr/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2   -D_GNU_SOURCE -DPOSIX_C_SOURCE=1-D_POSIX_C_SOURCE=200112L -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -L/build/ruby2.4-fBt1LG/ruby2.4-2.4.3/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    -lrt  -lruby-2.4 -lrt  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
-/tmp/ccFo2sww.o: In function `t':
-/home/ns_sly/Desktop/workspace/onemilmap/vendor/bundle/ruby/2.4.0/gems/kgio-2.11.2/ext/kgio/conftest.c:14: undefined reference to `rb_thread_blocking_region'
+/tmp/ccCsdsed.o: In function `t':
+/home/ns_sly/Desktop/workspace/eagleEye/web/vendor/bundle/ruby/2.4.0/gems/kgio-2.11.2/ext/kgio/conftest.c:14: undefined reference to `rb_thread_blocking_region'
 collect2: error: ld returned 1 exit status
 checked program was:
 /* begin */

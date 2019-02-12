@@ -1,10 +1,10 @@
 module ApplicationHelper
 	def full_title(page_title)
 		 if user_signed_in? 
-		 	base_title = "MilMap"
+		 	base_title = "eMonitor"
 		 	
 		else
-			"MilMap | not logged in "
+			"eMonitor | not logged in "
 		end
 		if page_title.empty?
 			base_title

@@ -6,20 +6,27 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem 'jquery-cdn'
+gem 'geokit', '~> 1.13', '>= 1.13.1'
 gem 'rabl'
+gem 'geocoder'
 gem 'rack-timeout'
 # Also add either `oj` or `yajl-ruby` as the JSON parser
 gem 'oj'
 gem 'clipboard-rails'
 gem 'simple_form'
-gem 'paystack'
-gem 'delayed_job_active_record'
-gem 'delayed_job_recurring'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
 # Use sqlite3 as the database for Active Record
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+# Use Omniautbundle updath Google plugin
+gem 'omniauth-google-oauth2'
+# Use Omniauth Twitter plugin
+gem 'omniauth-twitter'
 
-gem 'ckeditor'
+gem 'carrierwave'
 gem 'active_model_serializers'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -69,21 +76,12 @@ gem 'jquery-rails'
 gem 'modernizr-rails'
 gem 'font-awesome-rails'
 
-gem 'carrierwave'
+
 # Use Devise for authentication
 gem 'devise'
 # Use Omniauth Facebook plugin
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-linkedin'
-#gem 'omniauth-instagram'
-gem 'dynamics_crm', :git => 'https://github.com/nsikanikpoh/crmsly.git'
-#gem 'dynamics_crm'
 
-# Use Omniautbundle updath Google plugin
-gem 'omniauth-google-oauth2'
-# Use Omniauth Twitter plugin
-gem 'omniauth-twitter'
+
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store'
 
@@ -106,8 +104,8 @@ gem 'rails_12factor', group: :production
 gem 'bootstrap-sass'
 gem 'bcrypt'
 
-gem 'fusioncharts-rails'
 
+gem 'fusioncharts-rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

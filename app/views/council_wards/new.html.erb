@@ -1,0 +1,39 @@
+
+
+<% provide( :title, " New Council Ward") %>
+
+
+<%if current_user%>
+  <h2 class="title1">New Council Ward Form</h2>
+          <div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
+            <div class="form-title">
+              <h4>one click monitoring</h4>
+            </div>
+  
+  
+</div>
+
+
+
+    
+<div class="col-md-12 panel-grids">
+
+
+
+<%= render 'form', council_ward: @council_ward %>
+
+
+ <%else%>
+<h2>Unauthoried access!</h2>
+    <p>You are not authorised to view this page.</p>
+  <%end%>
+<br>
+<br>
+<br>
+   <%= link_to "Cancel", root_url,class:"btn btn-danger"%>
+ <%= link_to "Back", :back, class:"btn btn-warning"%>
+
+<%= link_to 'councils Repo', council_wards_path, class:"btn btn-success"  %>
+</div>
+</div>
+</div>

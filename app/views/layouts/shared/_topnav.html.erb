@@ -32,8 +32,12 @@
 
                    
                   <div class="user-name">
-                    <p><%=current_user.name%></p>
-                    <span ><%=current_user.type%></span>
+                    <p><%=current_user.first_name%></p>
+                    <%if current_user.type?%>
+                        <span><%=current_user.type%></span>
+                         <%else%>
+                         <span>Agent</span>
+                     <%end%>
                   </div>
                   <i class="fa fa-angle-down lnr"></i>
                   <i class="fa fa-angle-up lnr"></i>
@@ -42,19 +46,16 @@
               </a>
               <ul class="dropdown-menu drp-mnu">
                
-                  <%if current_user.provider == ''%>
+                
                 <li>  
                 <%= link_to edit_user_registration_path(current_user) do %>
                 <i class="fa fa-user"></i>Account Settings
 
-                <%end%>
+             <%end%>
                
                 </li>
 
-                <%else%>
-                <li> <a href="/users/<%= current_user.id %>/edit"><i class="fa fa-user"></i>Account Settings</a> </li>
-
-                <%end%>
+               
 
                 <li> <a href="/users/<%= current_user.id %>"><i class="fa fa-suitcase"></i> Profile</a> </li> 
                 <li> 

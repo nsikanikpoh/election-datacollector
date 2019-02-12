@@ -1,0 +1,253 @@
+<% provide( :title, @report.election_type) %>
+
+
+<%if current_user%>
+ <h2 class="title1" style="background-color:#edeff2;height: 50px; font-size:40px; color:orange;">  <%= @report.election_type %> Posted By: <%= @report.user.first_name %> <%= @report.user.last_name %></h2>
+          <div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
+</div>
+   
+<div class="col-md-12 panel-grids">
+
+
+<small>this page is available to logged in users only</small>
+</div>
+<br>
+<br>
+<br>
+  <center><strong><h2 style="color:orange; font-size:22px"></h2></strong></center>
+  <p class="lead" style="font-size:16px">
+  <%= @report.election_type %>
+</p>
+
+
+  
+<div class="col-md-12 panel-grids">
+            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title"> Report Info</h3> </div> <div class="panel-body">
+        <br />
+                   <div class="pyro">
+  <div class="before"></div>
+  <div class="after"></div>
+</div>
+        <table class="table">
+
+        <tbody>
+
+
+      <tr>
+<td>
+  <strong>Election Type:</strong>
+  <%= @report.election_type %>
+</td>
+</tr>
+
+      <tr>
+<td>
+  <strong>LGA:</strong>
+  <%= @report.lga %>
+</td>
+</tr>
+      <tr>
+<td>
+  <strong>Council Ward:</strong>
+  <%= @report.council_ward.title %>
+</td>
+</tr>
+      <tr>
+<td>
+  <strong>Polling Unit:</strong>
+  <%= @report.polling_unit.title %>
+</td>
+</tr>
+      <tr>
+<td>
+  <strong>Time of Arrival of INEC Officials:</strong>
+  <%= @report.arrival_time %>
+</td>
+</tr>
+        <tr>
+<td>
+  <strong>Time of Arrival of Election Materials:</strong>
+  <%= @report.arrival_election_material %>
+</td>
+</tr>
+<tr>
+<td>
+  <strong>Time Accreditation and Voting Started:</strong>
+  <%= @report.voting_started %>
+</td></tr>
+<tr>
+<td>
+  <strong>Time Accreditation and Voting Ended:</strong>
+  <%= @report.voting_ended %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>Total Number of Accredited Voters:</strong>
+  <%= @report.all_voters %>
+</td></tr>
+
+
+
+<tr>
+<td>
+  <strong>Total Number of Valid Voters:</strong>
+  <%= @report.valid_voters %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>Total Number of Invalid Voters:</strong>
+  <%= @report.invalid_voters %>
+</td></tr>
+
+<tr>
+<td>
+  <strong>APC Votes:</strong>
+  <%= @report.apc_votes %>
+</td></tr>
+
+<tr>
+<td>
+  <strong>APGA Votes:</strong>
+  <%= @report.apga_votes %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>APC Votes:</strong>
+  <%= @report.apc_votes %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>Labour Party Votes:</strong>
+  <%= @report.labour_party %>
+</td></tr>
+
+<tr>
+<td>
+  <strong>PDP Votes:</strong>
+  <%= @report.pdp_votes %>
+</td></tr>
+
+<tr>
+<td>
+  <strong>PRP Votes:</strong>
+  <%= @report.prp_votes %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>YPP Votes:</strong>
+  <%= @report.ypp_votes %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>Total Votes for all Parties:</strong>
+  <%= @report.total_votes %>
+</td></tr>
+
+<tr>
+<td>
+  <strong>Time Result Announced:</strong>
+  <%= @report.result_time %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>PDP Agent:</strong>
+  <%= @report.pdp_agent %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>Agent Phone:</strong>
+  <%= @report.agent_phone %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>Name of Presiding Officer:</strong>
+  <%= @report.officer_name %>
+</td></tr>
+
+<tr>
+<td>
+  <strong>Gender of Presiding Officer:</strong>
+  <%= @report.officer_gender %>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>Picture of Result Sheet:</strong>
+
+  <%if @report.sheet?%>
+       <center> <%= image_tag(@report.sheet_url) %></center>
+
+        <%else%>
+
+      <center>  <img src="../assets/fallback/wood.png"/></center>
+        <%end%>
+
+</td></tr>
+
+<tr>
+<td>
+  <strong>Picture of Pulling Unit Landmark:</strong>
+  <%if @report.picture?%>
+       <center> <%= image_tag(@report.picture_url) %></center>
+
+        <%else%>
+
+      <center>  <img src="../assets/fallback/wood.png"/></center>
+        <%end%>
+</td></tr>
+
+
+<tr>
+<td>
+  <strong>Date Made:</strong>
+  <%= @report.created_at %>
+
+  <%= time_ago_in_words(@report.created_at)%> ago
+</td></tr>
+
+
+<tr>
+  
+  <td>
+    
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@report.latitude},#{@report.longitude}&markers=#{@report.latitude},#{@report.longitude}&zoom=7&size=640x400&key=AIzaSyA3jl4blNBIkIg5fRaptJZbXeyf_uCWPqg",
+              class: 'img-fluid img-rounded', alt: "#{@report.lga} on the map"%>
+
+  </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+
+  <%else%>
+    <h2>Unauthoried access!</h2>
+    <p>You are not authorised to view this page.</p>
+  <%end%>
+
+
+<%= link_to 'Edit', edit_report_path(@report), class:"btn btn-success" %> 
+  <%= link_to 'Dashboard', root_path, class:"btn btn-info" %> | <%= link_to "Back", :back, class:"btn btn-warning"%>
+

@@ -5,23 +5,14 @@ class Api::V1::SessionsController < Api::V1::BaseController
     def create
     user = User.where(email: params[:email]).first
 
-    if user.valid_password?(params[:password])
-      sign_in(user)
-      if user.type == "Member"
-          render json: user, serializer: Api::V1::MembersSerializer,  status: :created  
+        if user.valid_password?(params[:password])
+           sign_in(user)
     
-      elsif user.type == "FundRaiser"
-          render json: user, serializer: Api::V1::FundRaisersSerializer,  status: :created  
-    
-      elsif user.type == "Patriot"
-          render json: user, serializer: Api::V1::PatriotsSerializer,  status: :created  
-    
-      elsif user.type == "Champion"
-          render json: user, serializer: Api::V1::ChampionsSerializer,  status: :created         
-      end
-    else
-      head :unauthorized
-    end
+       
+        render :json => user.to_json, :status => 201
+       else
+         render json: "errors", :status => 422
+       end  
   end
 
   def destroy

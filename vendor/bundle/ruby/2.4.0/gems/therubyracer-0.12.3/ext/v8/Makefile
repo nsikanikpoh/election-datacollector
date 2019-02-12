@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(rubysitearchprefix)/vendor_ruby/$(ruby_version)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20181115-28258-3lfggr
-sitelibdir = $(DESTDIR)./.gem.20181115-28258-3lfggr
+sitearchdir = $(DESTDIR)./.gem.20190208-11001-t6z134
+sitelibdir = $(DESTDIR)./.gem.20190208-11001-t6z134
 sitedir = $(DESTDIR)/usr/local/lib/site_ruby
 rubyarchdir = $(rubyarchprefix)/$(ruby_version)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -82,11 +82,11 @@ debugflags = -ggdb3
 warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings   -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format
 CCDLFLAGS = -fPIC
 CFLAGS   = $(CCDLFLAGS) -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -fPIC $(ARCH_FLAG)
-INCFLAGS = -I. -I/home/ns_sly/Desktop/workspace/onemilmap/vendor/bundle/ruby/2.4.0/gems/libv8-3.16.14.19-x86_64-linux/vendor/v8/include -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
+INCFLAGS = -I. -I/home/ns_sly/Desktop/workspace/eagleEye/web/vendor/bundle/ruby/2.4.0/gems/libv8-3.16.14.19-x86_64-linux/vendor/v8/include -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
 CPPFLAGS =  -D_FORTIFY_SOURCE=2 $(DEFS) $(cppflags) -Wall -g -rdynamic
 CXXFLAGS = $(CCDLFLAGS) -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security $(ARCH_FLAG)
-ldflags  = /home/ns_sly/Desktop/workspace/onemilmap/vendor/bundle/ruby/2.4.0/gems/libv8-3.16.14.19-x86_64-linux/vendor/v8/out/x64.release/obj.target/tools/gyp/libv8_base.a /home/ns_sly/Desktop/workspace/onemilmap/vendor/bundle/ruby/2.4.0/gems/libv8-3.16.14.19-x86_64-linux/vendor/v8/out/x64.release/obj.target/tools/gyp/libv8_snapshot.a -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -L/build/ruby2.4-fBt1LG/ruby2.4-2.4.3/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic
+ldflags  = /home/ns_sly/Desktop/workspace/eagleEye/web/vendor/bundle/ruby/2.4.0/gems/libv8-3.16.14.19-x86_64-linux/vendor/v8/out/x64.release/obj.target/tools/gyp/libv8_base.a /home/ns_sly/Desktop/workspace/eagleEye/web/vendor/bundle/ruby/2.4.0/gems/libv8-3.16.14.19-x86_64-linux/vendor/v8/out/x64.release/obj.target/tools/gyp/libv8_snapshot.a -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -L/build/ruby2.4-fBt1LG/ruby2.4-2.4.3/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic
 dldflags = -Wl,-Bsymbolic-functions -Wl,-z,relro -L/build/ruby2.4-fBt1LG/ruby2.4-2.4.3/debian/lib 
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)

@@ -1,0 +1,140 @@
+  <aside class="sidebar-left">
+      <nav class="navbar navbar-inverse">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <h1><a class="navbar-brand" href="/"><span class="fa fa-area-chart"></span>e-Monitor<span class="dashboard_text">Agent's Dashboard</span></a></h1>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="sidebar-menu">
+              <li class="header">MAIN NAVIGATION</li>
+              <li class="treeview">
+                <a href="/">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+              </li>
+        <li class="treeview">
+                <a href="/reports">
+                <i class="fa fa-th"></i>
+                <span>Reports</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                
+                <ul class="treeview-menu">
+                 <li><a href="/reports">view reports <i class="fa fa-angle-right"></i></a></li>
+                  <li><a href="/reports/new">Add new report <i class="fa fa-angle-right"></i></a></li>
+              </ul>
+                
+              </li>
+
+            
+
+
+
+        <li class="treeview"><a href="/council_wards">
+                 <i class="fa fa-user"></i>
+                <span>Council Wards</span>
+                <i class="fa fa-angle-left pull-right"></i>
+               </a>
+   <ul class="treeview-menu">
+          <li><a href="/council_wards">View Council Wards</a>
+            </li>
+
+            <li><a href="/council_wards/new">New Council Ward</a>
+            </li>
+        </ul>
+
+   </li>
+
+     <li class="treeview"><a href="/polling_units">
+                 <i class="fa fa-sitemap"></i>
+                <span>Polling Units</span>
+                <i class="fa fa-angle-left pull-right"></i>
+               </a>
+   <ul class="treeview-menu">
+          <li><a href="/polling_units">View polling_units</a>
+            </li>
+
+            <li><a href="/polling_units/new">Add polling_unit</a>
+            </li>
+        </ul>
+
+   </li>
+
+ <li class="treeview">
+                <a href="/presidential_elections">
+                <i class="fa fa-th"></i>
+                <span>Presidential</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+               
+              </li>
+
+<li class="treeview">
+                <a href="/governorship_elections">
+                <i class="fa fa-th"></i>
+                <span>Governorship</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+               
+              </li>
+
+
+              <li class="treeview">
+                <a href="/senatorial_elections">
+                <i class="fa fa-th"></i>
+                <span>Senatorial</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+               
+              </li>
+
+
+
+
+
+ <li class="treeview">
+                <a href="/house_of_representative_elections">
+                <i class="fa fa-th"></i>
+                <span>House of Rep</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+               
+              </li>
+
+
+               <li class="treeview">
+                <a href="/house_of_assembly_elections">
+                <i class="fa fa-th"></i>
+                <span>House of Assembly</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+               
+              </li>
+
+
+                <li class="treeview">
+
+                <%= link_to destroy_user_session_path, method: :delete do%> 
+  
+                  <i class="fa fa-sign-out"></i> <span>Logout</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                <%end%>
+  </li>
+            
+           </ul>
+          </div>
+
+
+              
+          <!-- /.navbar-collapse -->
+      </nav>
+
+    </aside>
+  
+
+

@@ -1,0 +1,280 @@
+
+
+<%= form_with(model: report, local: true) do |form| %>
+
+
+  <% if report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="row">
+  <div class="col-md-9 col-xs-12">
+    
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <br />
+ <div class="form-body">
+              <form> 
+
+
+
+  <div class="col-md-6">
+   <div class="form-group">
+     <%= form.label :election_type, "Type of Election" %>
+     <%= form.select :election_type, ["Presidential","Governorship","Senatorial","House of Assembly","House of Representative"], placeholder:"type", class:"form-control", required:"required"%>
+
+</div>
+ </div>
+    
+    
+    
+  <div class="col-md-6">
+   <div class="form-group">
+     <%= form.label :lga, "Select L.G.A" %>
+     <%= form.select :lga, ["Ado","Agatu","Apa","Buruku","Gboko","Guma","Giver West","Katsina-Ala","Konshisha","Kwande", "Logo","Makurdi","Obi","Ogbadibo","Oju","Okpokwu","Ohimini","Otukpo","Tarka","Ukum","Ushongo","Vandeikya"], placeholder:"Title", class:"form-control", required:"required"%>
+  </div>
+
+
+          </div>
+
+
+  <div class="col-md-6">
+   <div class="form-group">
+        <%= form.label :council_ward_id, "Council Ward" %>
+    <%= form.select :council_ward_id,  @council_wards.map{|client|[(client.title), client.id]}, include_blank: true, id: "index_of_the_client_id_select_box", class:"form-control"%>
+  </div>
+          </div>
+
+
+
+  <div class="col-md-6">
+   <div class="form-group">
+    
+        <%= form.label :polling_unit_id, "Polling Unit of Election" %>
+    <%= form.select :polling_unit_id,  @polling_units.map{|client|[(client.title), client.id]}, include_blank: true, id: "index_of_the_client_id_select_box", class:"form-control"%>
+  </div>
+          </div>
+
+
+  <div class="col-md-6">
+   <div class="form-group">
+  
+       <%= form.label :arrival_time, "Time of Arrival of INEC Officials" %>
+  <%= form.time_field :arrival_time,
+      value: "%H:%M",
+      min: 'hh:mm:ss',
+      max: 'hh:mm:ss', class:"form-control"
+  %>
+    
+  </div>
+          </div>
+
+
+           <div class="col-md-6">
+   <div class="form-group">
+  
+       <%= form.label :arrival_election_material, "Time of Arrival of Election Materials" %>
+  <%= form.time_field :arrival_election_material,
+      value: "%H:%M",
+      min: 'hh:mm:ss',
+      max: 'hh:mm:ss', class:"form-control"
+  %>
+    
+  </div>
+          </div>
+
+             <div class="col-md-6">
+   <div class="form-group">
+  
+       <%= form.label :voting_started, "Time Accreditation and Voting Started" %>
+  <%= form.time_field :voting_started,
+      value: "%H:%M",
+      min: 'hh:mm:ss',
+      max: 'hh:mm:ss', class:"form-control"
+  %>
+    
+  </div>
+          </div>
+             <div class="col-md-6">
+   <div class="form-group">
+  
+       <%= form.label :voting_ended, "Time Accreditation and Voting Ended" %>
+  <%= form.time_field :voting_ended,
+      value: "%H:%M",
+      min: 'hh:mm:ss',
+      max: 'hh:mm:ss', class:"form-control"
+  %>
+    
+  </div>
+          </div>
+        
+
+                 <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :all_voters, "Total Number of Accredited Voters" %>
+       <%= form.text_field :all_voters, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>
+
+                 <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :valid_voters, "Total Number of Valid Voters" %>
+       <%= form.text_field :valid_voters, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>
+        
+
+                 <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :invalid_voters, "Total Number of Invalid Voters" %>
+       <%= form.text_field :invalid_voters, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>
+
+
+
+                 <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :apc_votes, "APC Votes" %>
+       <%= form.text_field :apc_votes, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>   
+        
+                     <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :apga_votes, "APGA Votes" %>
+       <%= form.text_field :apga_votes, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>
+
+
+              <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :labour_party, "Labour Party Votes" %>
+       <%= form.text_field :labour_party, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>   
+
+
+                 <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :pdp_votes, "PDP Votes" %>
+       <%= form.text_field :pdp_votes, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>
+
+       <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :prp_votes, "PRP Votes" %>
+       <%= form.text_field :prp_votes, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>
+
+
+             <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :ypp_votes, "YPP Votes" %>
+       <%= form.text_field :ypp_votes, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>
+
+
+   <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :total_votes, "Total Votes for all Parties" %>
+       <%= form.text_field :total_votes, type:"number", class:"form-control", required:"required" %>
+    
+  </div>
+          </div>
+
+
+
+         <div class="col-md-6">
+   <div class="form-group">
+  
+       <%= form.label :result_time, "Time Result Announced" %>
+  <%= form.time_field :result_time,
+      value: "%H:%M",
+      min: 'hh:mm:ss',
+      max: 'hh:mm:ss', class:"form-control"
+  %>
+    
+  </div>
+          </div>
+
+
+ <div class="col-md-6">
+   <div class="form-group">
+  
+       <%= form.label :pdp_agent, "PDP Agent" %>
+<%= form.text_field :pdp_agent,  class:"form-control has-feedback-left", placeholder:"Name", type:"text", required:"required" %>
+    
+  </div>
+          </div>
+
+
+           <div class="col-md-6">
+   <div class="form-group">
+  <%= form.label :agent_phone, "Agent Phone" %>
+       <%= form.text_field :agent_phone, type:"number", class:"form-control", required:"required" %>
+  </div></div>
+
+
+
+           <div class="col-md-6">
+   <div class="form-group">
+  
+       <%= form.label :officer_name, "Name of Presiding Officer" %>
+<%= form.text_field :officer_name,  class:"form-control", placeholder:"Name", type:"text", required:"required" %>
+    
+  </div>
+          </div>
+
+
+                     <div class="col-md-6">
+   <div class="form-group">
+  
+       <%= form.label :officer_gender, "Gender of Presiding Officer" %>
+     <%= form.select :officer_gender, ["Male","Female"], placeholder:"Title", required:"required"%>
+    
+  </div>
+          </div>
+
+
+
+
+
+
+
+          <div class="form-group">
+            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+               <%= form.submit "Submit Report", class:"btn btn-info"%>  
+
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+
+
+<% end %>

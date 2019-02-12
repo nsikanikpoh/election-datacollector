@@ -1,0 +1,39 @@
+
+<% provide( :title, "Edit Report") %>
+
+
+
+<div class="forms">
+          <h2 class="title1">Edit Report</h2>
+          <div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
+            <div class="form-title">
+              <h4>submit pulling report</h4>
+            </div>
+
+
+<%if current_user.admin?%>
+
+
+<h1>Editing Polling Unit</h1>
+<small>this page is available to admins only</small>
+
+<br>
+<br>
+<br>
+
+
+<%= render 'form', report: @report %>
+<br>
+<br>
+<br>
+ <%= link_to "Cancel", root_url,class:"btn btn-danger"%>
+ <%= link_to "Back", :back, class:"btn btn-warning"%>
+
+<%= link_to 'Polling Repo', reports_path, class:"btn btn-success"  %>
+ <%else%>
+<h2>Unauthorized access!</h2>
+    <p>You are not authorised to view this page.</p>
+  <%end%>
+</div>
+</div>
+</div>

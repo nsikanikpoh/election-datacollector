@@ -166,7 +166,7 @@ i {
 <div class="col-md-12 panel-grids">
 </div>
  
-            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title">  <%= @user.name.capitalize if @user.name %></h3> </div> <div class="panel-body">
+            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title">  <%= @user.first_name.capitalize if @user.first_name %> <%= @user.last_name.capitalize if @user.last_name %></h3> </div> <div class="panel-body">
 
 <div class="col-md-4 widget widget1 panel-grids">
           
@@ -181,8 +181,8 @@ i {
         <div class="profile-usertitle">
           <div class="profile-usertitle-name">
           <div class="profile-userpic">
-       <%if current_user.image?%>
-        <%= image_tag(current_user.image_url) %>
+       <%if @user.image?%>
+        <%= image_tag(@user.image_url) %>
 
         <%else%>
 
@@ -190,17 +190,22 @@ i {
         <%end%>
 
         </div>
-           <%= @user.name.capitalize if @user.name %>
+           <%= @user.first_name.capitalize if @user.first_name %>
           </div>
           <div class="profile-usertitle-job">
-           <%= @user.type %>
+           <%if @user.type?%>
+                        <span><%=@user.type%></span>
+                         <%else%>
+
+                         <span>Agent</span>
+                     <%end%>
 
           </div>
         </div>
         <!-- END SIDEBAR USER TITLE -->
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-          <center><button type="button" class="btn btn-success btn-sm">OneMilMap</button></center>
+          <center><button type="button" class="btn btn-success btn-sm">Eagle Eye Monitoring</button></center>
           
         </div>
         <!-- END SIDEBAR BUTTONS -->
@@ -209,7 +214,7 @@ i {
           <ul class="nav">
             <li class="active">
              
-              <%= link_to edit_user_registration_path(current_user) do%> <i class="fa fa-user"></i>Account Settings<%end%>
+              <%= link_to edit_user_registration_path(current_user) do%> <i class="fa fa-user"></i>My Account Settings<%end%>
             </li>
             
 
@@ -232,13 +237,7 @@ i {
 
 
 
-<%if @user.title%>
-<td>
-  <strong>Title:</strong>
-  <%= @user.title %>
-</td></tr>
-<tr>
-<%end%>
+
 
 <%if @user.gender%>
 <td>
@@ -269,42 +268,9 @@ i {
 <tr>
 <%end%>
 
-<%if @user.location%>
-<td>
-  <strong>Location:</strong>
-  <%= @user.location %>
-</td></tr>
-<tr>
-<%end%>
-<%if @user.state%>
-<td>
-  <strong>State:</strong>
-  <%= @user.state%>
-</td></tr>
-<tr>
-<%end%>
 
-<%if @user.referrer_code%>
-<td>
-  <strong>Referred By:</strong>
-  <%= @referrer.name%> <%= link_to "Profile", user_path(@referrer), style:"color:#FF0000;" %>
-</td></tr>
-<tr>
-<%end%>
 
-<%if current_user.provider == ''%>
-<td>
-          <span>
-             signed up through on-site auth.
-          </span>
-</td></tr>
-<tr>
-<%else%>
-<td>
- signed up through - <%= current_user.provider%> auth.
-</td></tr>
-<tr>
-          <%end%>
+
           <tr>
           <td>
           <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-success" %> 
@@ -342,353 +308,47 @@ i {
 </div>
 
 
-<%if @user.patriot? || @user.champion? || @user.prospect? ||@user.member?%>
+<%if @user.reports.any?%>
   
           <div class="col-md-6">
 
-            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title">  <%= @user.name.capitalize if @user.name %>'s Downlines</h3> </div>
+            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title">Reports Submitted by  <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h3> </div>
  
-  <div class="half">
-    <p>click to <strong>view</strong></p>
-    <div class="tab">
-      <input id="tab-one" type="checkbox" name="tabs">
-      <label for="tab-one"><i class="fa fa-lg fa-tasks"></i>First Generation <a style="color:orange;"><%= pluralize(@firstgeners.count, "Referral") %></a> <img src="../assets/img/1st_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/1st_generation_hover.png'" onmouseout="this.src='../assets/img/1st_generation.png'"></label>
-      <div class="tab-content">
-        <div id="accordian"> 
-        <% if @firstgeners.any? %>
-         <% @firstgeners.each do |user| %>
-                  <ul>
-                        <li>
-                           
-                            <a>
-    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
- <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
-                  </a>
-                        </li>
-                  </ul>
-                        <%end%>
-               <%else%>
-
-                      
-<p style="color:orange;">0 Referral</p>
-
-<%end%>
-                  </ul>
- 
-         </div>
-      </div>
-    </div>
-
-
-      <div class="tab">
-      <input id="tab-two" type="checkbox" name="tabs">
-      <label for="tab-two"><i class="fa fa-lg fa-tasks"></i>Second Generation <a style="color:orange;"><%= pluralize(@secondgeners.count, "Referral") %></a> <img src="../assets/img/2nd_generation.png" width="100%" height="100%" onmouseover="this.src='../assets/img/2nd_generation_hover.png'" onmouseout="this.src='../assets/img/2nd_generation.png'"/></label>
-      <div class="tab-content">
-        <div id="accordian"> 
-        <% if @secondgeners.any? %>
-         <% @secondgeners.each do |user| %>
-                  <ul>
-                        <li>
-                           
-                            <a>
-    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
- <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
-                  </a>
-                        </li>
-                  </ul>
-                        <%end%>
-               <%else%>
-
-                      
-<p style="color:orange;">0 Referral</p>
-
-<%end%>
-                  </ul>
- 
-         </div>
-      </div>
-    </div>
-
-       <div class="tab">
-      <input id="tab-three" type="checkbox" name="tabs">
-      <label for="tab-three"><i class="fa fa-lg fa-tasks"></i>Third Generation <a style="color:orange;"><%= pluralize(@thirdgeners.count, "Referral") %></a> <img src="../assets/img/3rd_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/3rd_generation_hover.png'" onmouseout="this.src='../assets/img/3rd_generation.png'"></label>
-      <div class="tab-content">
-        <div id="accordian"> 
-        <% if @thirdgeners.any? %>
-         <% @thirdgeners.each do |user| %>
-                  <ul>
-                        <li>
-                           
-                            <a>
-    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
- <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
-                  <input checked="" id="menu14" value="" type="checkbox">
-                  </a>
-                        </li>
-                  </ul>
-                        <%end%>
-               <%else%>
-
-                      
-<p style="color:orange;">0 Referral</p>
-
-<%end%>
-                  </ul>
- 
-         </div>
-      </div>
-    </div>
-
-       <div class="tab">
-      <input id="tab-four" type="checkbox" name="tabs">
-      <label for="tab-four"><i class="fa fa-lg fa-tasks"></i>Fourth Generation <a style="color:orange;"><%= pluralize(@fourthgeners.count, "Referral") %></a> <img src="../assets/img/4th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/4th_generation_hover.png'" onmouseout="this.src='../assets/img/4th_generation.png'"></label>
-      <div class="tab-content">
-        <div id="accordian"> 
-        <% if @fourthgeners.any? %>
-         <% @fourthgeners.each do |user| %>
-                  <ul>
-                        <li>
-                           
-                            <a>
-    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
- <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
-                  <input checked="" id="menu14" value="" type="checkbox">
-                  </a>
-                        </li>
-                  </ul>
-                        <%end%>
-               <%else%>
-
-                      
-<p style="color:orange;">0 Referral</p>
-
-<%end%>
-                  </ul>
- 
-         </div>
-      </div>
-    </div>
-
-       <div class="tab">
-      <input id="tab-five" type="checkbox" name="tabs">
-      <label for="tab-five"><i class="fa fa-lg fa-tasks"></i>Five Generation <a style="color:orange;"><%= pluralize(@fifthgeners.count, "Referral") %></a> <img src="../assets/img/5th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/5th_generation_hover.png'" onmouseout="this.src='../assets/img/5th_generation.png'"></label>
-      <div class="tab-content">
-        <div id="accordian"> 
-        <% if @fifthgeners.any? %>
-         <% @fifthgeners.each do |user| %>
-                  <ul>
-                        <li>
-                           
-                            <a>
-    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
- <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
-                  <input checked="" id="menu14" value="" type="checkbox">
-                  </a>
-                        </li>
-                  </ul>
-                        <%end%>
-               <%else%>
-
-                      
-<p style="color:orange;">0 Referral</p>
-
-<%end%>
-                  </ul>
- 
-         </div>
-      </div>
-    </div>
-
-       <div class="tab">
-      <input id="tab-six" type="checkbox" name="tabs">
-      <label for="tab-six"><i class="fa fa-lg fa-tasks"></i>Six Generation <a style="color:orange;"><%= pluralize(@sixthgeners.count, "Referral") %></a> <img src="../assets/img/6th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/6th_generation_hover.png'" onmouseout="this.src='../assets/img/6th_generation.png'"></label>
-      <div class="tab-content">
-        <div id="accordian"> 
-        <% if @sixthgeners.any? %>
-         <% @sixthgeners.each do |user| %>
-                  <ul>
-                        <li>
-                           
-                            <a>
-    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
- <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
-                  <input checked="" id="menu14" value="" type="checkbox">
-                  </a>
-                        </li>
-                  </ul>
-                        <%end%>
-               <%else%>
-
-                      
-<p style="color:orange;">0 Referral</p>
-
-<%end%>
-                  </ul>
- 
-         </div>
-      </div>
-    </div>
-     <div class="tab">
-      <input id="tab-seven" type="checkbox" name="tabs">
-      <label for="tab-seven"><i class="fa fa-lg fa-tasks"></i>Seven Generation <a style="color:orange;"><%= pluralize(@seventhgeners.count, "Referral") %></a> <img src="../assets/img/7th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/7th_generation_hover.png'" onmouseout="this.src='../assets/img/7th_generation.png'"></label>
-      <div class="tab-content">
-        <div id="accordian"> 
-        <% if @seventhgeners.any? %>
-         <% @seventhgeners.each do |user| %>
-                  <ul>
-                        <li>
-                           
-                            <a>
-    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
- <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
-                  <input checked="" id="menu14" value="" type="checkbox">
-                  </a>
-                        </li>
-                  </ul>
-                        <%end%>
-               <%else%>
-
-                      
-<p style="color:orange;">0 Referral</p>
-
-<%end%>
-                  </ul>
- 
-         </div>
-      </div>
-    </div>
-
-     <div class="tab">
-      <input id="tab-eight" type="checkbox" name="tabs">
-      <label for="tab-eight"><i class="fa fa-lg fa-tasks"></i>Eighth Generation <a style="color:orange;"><%= pluralize(@eightgeners.count, "Referral") %></a> <img src="../assets/img/8th_generation.png" width="100%" height="100%"/ onmouseover="this.src='../assets/img/8th_generation_hover.png'" onmouseout="this.src='../assets/img/8th_generation.png'"></label>
-      <div class="tab-content">
-        <div id="accordian"> 
-        <% if @eightgeners.any? %>
-         <% @eightgeners.each do |user| %>
-                  <ul>
-                        <li>
-                           
-                            <a>
-    <label for="menu14"><span class="profile_img prfil-img"> <%= image_tag current_user.image_url,  width: 60, height: 50 %></span>
- <%= user.name %> <b style="color:#3CB371;">Level:</b> <%= user.type %> <%= link_to 'view profile', user, style:"color:orange;" %></label>
-                  <input checked="" id="menu14" value="" type="checkbox">
-                  </a>
-                        </li>
-                  </ul>
-                        <%end%>
-               <%else%>
-
-                      
-<p style="color:orange;">0 Referral</p>
-
-<%end%>
-                  </ul>
- 
-         </div>
-      </div>
-    </div>
-  </div>
-
-<%elsif @user.fund_raiser?%>
-
+ <p class="lead" style="color:orange;">Unsortted</p>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Election Type</th>
+     
+      <th>L.G.A</th>
   
-          <div class="col-md-12">
+      <th colspan="2"></th>
+    </tr>
+  </thead>
 
-            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title">  <%= @user.name.capitalize if @user.name %>'s Action track</h3> </div>
- 
-      <div class="col_3">
-      <div class="col-md-3 widget widget1">
-            <div class="r3_counter_box">
-                    <i class="pull-left fa fa-gift user1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong><%=@user.prospects.count%></strong></h5>
-                      <span>Existing Contacts</span>
-                    </div>
-                </div>
-          </div>
-          <div class="col-md-3 widget widget1">
-            <div class="r3_counter_box">
-                    <i class="pull-left fa fa-dollar icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong><%=@last_contact%></strong></h5>
-                      <span>Last Prospect</span>
-                    </div>
-                </div>
-          </div>
+  <tbody>
+    <% @user.reports.each do |company| %>
+      <tr>
+        <td><%= company.election_type %>
 
-         
-          <div class="col-md-3 widget widget1">
-            <div class="r3_counter_box">
-                    <i class="pull-left fa fa-money user2 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong><%=@date_added%></strong></h5>
-                      <span>Last Contact Date</span>
-                    </div>
-                </div>
-          </div>
-          <div class="col-md-3 widget widget1">
-            <div class="r3_counter_box">
-                    <i class="pull-left fa fa-adjust icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong><%=@time_added%></strong></h5>
-                      <span>Last Contact Time</span>
-                    </div>
-                </div>
-           </div>
-          <div class="col-md-3 widget1">
-            <div class="r3_counter_box">
-                    <i class="pull-left fa fa-users icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong><%=@last_contact_op%></strong></h5>
-                      <span>Last Contact Opportunity</span>
-                    </div>
-                </div>
-           </div>
+        </td>
+       
+<td><%= company.lga %></td>
 
-           <div class="col-md-3 widget widget1">
-            <div class="r3_counter_box">
-                    <i class="pull-left fa fa-edit user1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong><%=@total_op%></strong></h5>
-                      <span>Total Opportunity Contacts</span>
-                    </div>
-                </div>
-          </div>
-          <div class="col-md-3 widget widget1">
-            <div class="r3_counter_box">
-                    <i class="pull-left fa fa-dollar user1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong><%=@total_donated%></strong></h5>
-                      <span>Total donated Contacts</span>
-                    </div>
-                </div>
-          </div>
-           <div class="col-md-3 widget widget1">
-            <div class="r3_counter_box">
-                    <i class="pull-left fa fa-laptop user1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong><%= @total_contacts%></strong></h5>
-                      <span>Total Contacts Brought in</span>
-                    </div>
-                </div>
-          </div>
+        <td><%= link_to 'View Report', company , class:"btn btn-info btn-xs"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-           <div class="col-md-3 widget widget1">
-            <div class="r3_counter_box">
-                    <i class="pull-left fa fa-laptop user1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong><%= @total_amount%></strong></h5>
-                      <span>Total Amount Raised</span>
-                    </div>
-                </div>
-          </div>
-          
-          
-          
-          <div class="clearfix"> </div>
-    </div>
-  </div>
+<br>
+  
+
+<%else%>
+
+<p style="font-size:16px; color:red;">No Reports from this Agent Yet!</p>
 <%end%>
+
 
 <br/>
 <br/>

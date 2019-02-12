@@ -342,10 +342,7 @@ i {
 </div>
 
 
-
-
-
-   
+<%if @user.patriot? || @user.champion? || @user.prospect? ||@user.member?%>
   
           <div class="col-md-6">
 
@@ -592,7 +589,106 @@ i {
     </div>
   </div>
 
+<%elsif @user.fund_raiser?%>
 
+  
+          <div class="col-md-12">
+
+            <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title">  <%= @user.name.capitalize if @user.name %>'s Action track</h3> </div>
+ 
+      <div class="col_3">
+      <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-gift user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@user.prospects.count%></strong></h5>
+                      <span>Existing Contacts</span>
+                    </div>
+                </div>
+          </div>
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-dollar icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@last_contact%></strong></h5>
+                      <span>Last Prospect</span>
+                    </div>
+                </div>
+          </div>
+
+         
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-money user2 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@date_added%></strong></h5>
+                      <span>Last Contact Date</span>
+                    </div>
+                </div>
+          </div>
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-adjust icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@time_added%></strong></h5>
+                      <span>Last Contact Time</span>
+                    </div>
+                </div>
+           </div>
+          <div class="col-md-3 widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-users icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@last_contact_op%></strong></h5>
+                      <span>Last Contact Opportunity</span>
+                    </div>
+                </div>
+           </div>
+
+           <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-edit user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@total_op%></strong></h5>
+                      <span>Total Opportunity Contacts</span>
+                    </div>
+                </div>
+          </div>
+          <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-dollar user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%=@total_donated%></strong></h5>
+                      <span>Total donated Contacts</span>
+                    </div>
+                </div>
+          </div>
+           <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-laptop user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%= @total_contacts%></strong></h5>
+                      <span>Total Contacts Brought in</span>
+                    </div>
+                </div>
+          </div>
+
+           <div class="col-md-3 widget widget1">
+            <div class="r3_counter_box">
+                    <i class="pull-left fa fa-laptop user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><%= @total_amount%></strong></h5>
+                      <span>Total Amount Raised</span>
+                    </div>
+                </div>
+          </div>
+          
+          
+          
+          <div class="clearfix"> </div>
+    </div>
+  </div>
+<%end%>
 
 <br/>
 <br/>
