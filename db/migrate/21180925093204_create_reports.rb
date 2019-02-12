@@ -24,6 +24,7 @@ class CreateReports < ActiveRecord::Migration[5.1]
       t.string :officer_name  
     	t.string :officer_gender 
     	t.string :picture 
+      t.string :picturesss
     	t.string :sheet 
     	t.float :latitude 
     	t.float :longitude
