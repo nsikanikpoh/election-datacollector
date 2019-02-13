@@ -1,4 +1,4 @@
-<% provide( :title, "Members Index") %>
+<% provide( :title, "Agents Index") %>
 
 
   <h2 class="title1">Users INDEX</h2>
@@ -34,9 +34,7 @@
 
         <td><%= company.last_name %> 
         </td>
-       
-
-        
+ 
 
         <td>
         <a onMouseOver="this.style.color='orange'"
@@ -49,7 +47,7 @@
 <br>
   <%= link_to 'Dashboard', root_path, class:"btn btn-info" %> | <%= link_to "Back", :back, class:"btn btn-warning"%>
 
-<%= will_paginate @users, :renderer => BootstrapPagination::Rails %>
+
 <%else%>
 
 <p style="color:red;">No Agents Registered Yet!</p>
