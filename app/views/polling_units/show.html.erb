@@ -2,10 +2,15 @@
 
 
 <%if current_user%>
- <h2 class="title1" style="background-color:#edeff2;height: 50px; font-size:40px; color:orange;">  <%= @polling_unit.title %></h2>
+ <h2 class="title1" style="background-color:#edeff2;height: 50px; font-size:40px; color:orange;">  <%= @polling_unit.title %>
+ <br/>
+
+ L.G.A: <%= @council_ward.lga %>
+
+</h2>
           <div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
 </div>
-   <p>L>G.A: <%= @polling_unit.lga %></p>
+   
 
 <div class="col-md-12 panel-grids">
 <div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title"> Reports under  <%= @polling_unit.title %></h3> </div> <div class="panel-body">
