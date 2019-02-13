@@ -6,7 +6,7 @@ config.webpacker.check_yarn_integrity = false
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.active_job.queue_adapter = :delayed_job
+  #config.active_job.queue_adapter = :delayed_job
   
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
