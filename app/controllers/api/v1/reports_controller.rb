@@ -28,6 +28,46 @@ end
   # POST /users.json
 def create
     @report = Report.new(user_params)
+    if params[:user][:picture] != ''
+
+        uploaded_io = params[:user][:picture]
+        metadata = "data:image/jpeg;base64,"
+        base64_string = uploaded_io[metadata.size..-1]
+        blob = Base64.decode64(base64_string)
+        image = MiniMagick::Image.read(blob)
+        image.size 48763
+
+        # Save in other format
+        image.format 'png'
+        image.write @report.apc_votes.to_s+'image.png'
+        @report.picture = image
+
+    else
+      @report.picture = ""
+
+   end
+
+
+   if params[:user][:sheet] != ''
+
+        uploaded_ioe = params[:user][:sheet]
+        metadatae = "data:image/jpeg;base64,"
+        base64_stringe = uploaded_ioe[metadatae.size..-1]
+        blobe = Base64.decode64(base64_stringe)
+        imagee = MiniMagick::Image.read(blobe)
+        imagee.size 48763
+
+        # Save in other format
+        imagee.format 'png'
+        imagee.write @report.apc_votes.to_s+'image.png'
+        @report.sheet = imagee
+
+    else
+      @report.sheet = ""
+
+   end
+
+
     @report.user = @current_user
       if @report.save
        
