@@ -1,14 +1,14 @@
 
 
-<%= form_with(model: report, local: true) do |form| %>
+<%= form_for(@report, html: { multipart: true }) do |form| %>
 
 
-  <% if report.errors.any? %>
+  <% if @report.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
 
       <ul>
-      <% report.errors.full_messages.each do |message| %>
+      <% @report.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -260,9 +260,61 @@
           </div>
 
 
+ <div class="sign-u">
+        
+<div class="sign-u">
+ <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+          <div class="profile-userpic">
+           <div class="sign-up1">
+   <%= form.label :picture, "Upload Polling Unit Picture" %>
+ </div>
+ <span class="prfil-img">
+   <%= image_tag @report.picture_url,  width: 60, height: 50  if @report.picture? %>
+   <span class="prfil-img">
+   <div class="sign-up2">
+    <%= form.file_field :picture, autofocus: true %>
+   <%= form.hidden_field :picture_cache %>
+  
+  
+      <%= form.check_box :remove_picture %>
+      Remove Polling Unit Pix
+    
+  </div>
+  </div>
+
+          </div>
+          <div class="clearfix"> </div>
+          </div>
 
 
 
+ <div class="sign-u">
+        
+<div class="sign-u">
+ <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+          <div class="profile-userpic">
+           <div class="sign-up1">
+   <%= form.label :sheet, "Upload Voting Sheet Picture" %>
+ </div>
+ <span class="prfil-img">
+   <%= image_tag @report.sheet_url,  width: 60, height: 50  if @report.sheet? %>
+   <span class="prfil-img">
+   <div class="sign-up2">
+    <%= form.file_field :sheet, autofocus: true %>
+   <%= form.hidden_field :sheet_cache %>
+  
+  
+      <%= form.check_box :remove_sheet %>
+      Remove Voting Sheet Picture
+    
+  </div>
+  </div>
+
+          </div>
+          <div class="clearfix"> </div>
+          </div>
 
 
           <div class="form-group">
